@@ -1,0 +1,9 @@
+test_node8_task:
+  container:
+    image: node:8-jessie
+  test_script: make test DEBUG_PROXY=1
+
+test_node10_task:
+  container:
+    image: node:10-jessie
+  test_script: make test DEBUG_PROXY=1

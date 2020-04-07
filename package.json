@@ -1,0 +1,91 @@
+{
+  "name": "intervene",
+  "version": "2.8.3",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "bin": {
+    "intervene": "dist/src/cli.js"
+  },
+  "license": "MIT",
+  "scripts": {
+    "prepare": "npm run build",
+    "build": "tsc -p . -d",
+    "test": "npm run unit-test && npm run integration-test",
+    "unit-test": "jest src",
+    "integration-test": "jest integration-tests"
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "dependencies": {
+    "@hapi/hapi": "^18.3.1",
+    "@types/bluebird": "^3.5.24",
+    "@types/hapi__hapi": "^18.2.1",
+    "@types/jest": "^24.0.13",
+    "@types/node": "^8.10.29",
+    "@types/node-forge": "^0.8.2",
+    "@types/prettier": "^1.16.3",
+    "@types/yargs": "^12.0.0",
+    "axios": "^0.18.0",
+    "bluebird": "^3.5.3",
+    "chalk": "^2.4.1",
+    "eventsource": "^1.0.7",
+    "get-port": "^4.0.0",
+    "hostile": "^1.3.2",
+    "iconv-lite": "^0.4.24",
+    "joi": "^13.6.0",
+    "mkdirp": "^0.5.1",
+    "mocha": "^6.0.2",
+    "node-forge": "^0.8.2",
+    "sudo-prompt": "^8.2.3",
+    "susie": "^3.0.0",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.8.3",
+    "why-is-node-running": "^2.0.3",
+    "yargs": "^12.0.5"
+  },
+  "devDependencies": {
+    "http-server": "^0.11.1",
+    "jest": "^24.8.0",
+    "lodash": "^4.17.11",
+    "magicpen-media": "^1.5.1",
+    "prettier": "^1.14.3",
+    "sinon": "^6.3.4",
+    "unexpected": "^10.17.2",
+    "unexpected-sinon": "^10.10.1"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "arrowParens": "always"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [
+      "<rootDir>/test-helpers/init.js"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "node"
+    ],
+    "testPathIgnorePatterns": [
+      "/dist/",
+      "/node_modules/",
+      "/.cache/"
+    ],
+    "modulePathIgnorePatterns": [
+      "/dist/",
+      "/node_modules/",
+      "/.cache/"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "<rootDir>/test-helpers/test-preprocessor.js"
+    },
+    "testMatch": [
+      "<rootDir>/src/**/__tests__/*.spec.ts",
+      "<rootDir>/integration-tests/**/*.spec.ts"
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      href="../node_modules/mocha/mocha.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+  <body>
+    <div id="mocha"></div>
+    <script src="../node_modules/mocha/mocha.js"></script>
+    <script src="../node_modules/unexpected/unexpected.js"></script>
+    <script>
+      mocha.setup('bdd');
+      var expect = weknowhow.expect.clone();
+    </script>
+    <script src="./intervene.spec.js"></script>
+    <script>
+      mocha.run();
+    </script>
+  </body>
+</html>

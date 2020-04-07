@@ -1,0 +1,83 @@
+
+const config: ProxyConfig = {
+  target: '$$TARGET$$',
+  routes: {
+
+//////////////////////////////////////////
+//
+//    // Examples of routes
+//
+//    '/users/{userId}': {
+//      fixed: true,
+//      jsonResponse: true,
+//      here: 'can go anything'
+//    },
+//
+//    '/fixedresponse': 'plain text response',
+//
+//    '/tweets': async (req, h, proxy) => {
+//      // Call the target
+//      const realResponse = await proxy();
+//
+//      // Mutate the response
+//      // `body` contains the JSON from the response. Mutating it will mutate the response provided
+//      if (realResponse.body && realResponse.body.collection) {
+//        // Strip everything but the first item in the collection
+//        realResponse.body.collection.splice(1, realResponse.body.collection.length)
+//      }
+//
+//      // And return it
+//      return realResponse;
+//    },
+//
+//   'POST /api/{path*}': async (req, h, proxy) => {
+//     // Edit the request URL before proxying
+//     // (req.params is an object containing the path params, in this case `path`)
+//     req.url.pathname = '/api/v1/' + req.params.path;
+//
+//     // Edit the request headers before proxying
+//     // Incoming request headers are all lowercased
+//     req.headers['x-replaced-header'] = 'new or updated value';
+//
+//     // Actually proxy the request
+//     const res = await proxy();
+//
+//     // Edit the response headers after proxying
+//     res.headers['x-response-header'] = 'new or updated value';
+//
+//     // Return the response
+//     return res;
+//   },
+//
+//   'PUT /api/mockme': (req, h, proxy) => {
+//     // Return a custom response with a custom status code and headers
+//
+//     // assuming called with `?arg=xxxx`
+//     const result = { some: { json: 4, queryArg: req.url.query.arg } };
+//
+//     // The `h` variable is the Hapi response toolkit
+//     const response = h.response(result);
+//     response.header('x-response-header', 'new value');
+//     response.code(202);
+//     response.type('application/json');
+//     return response;
+//   },
+//
+//   // Typed endpoints
+//   // ===============
+//
+//   // Define the types RequestPayload and/or ResponsePayload to get type checking and
+//   // typed access to the request body
+//
+//   'POST /api/things': routeBuilder<RequestPayload, ResponsePayload>((req, h, proxy) => {
+//     // Response must conform to type `ResponsePayload`
+//     return {
+//       id: 123456,
+//       title: req.body.title   // <-- typed access to request, using type RequestPayload.
+//     }
+//   })
+//////////////////////////////////////////
+  }
+};
+
+export default config;
