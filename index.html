@@ -56,7 +56,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#intervene" class="md-skip">
+        <a href="#feature-summary" class="md-skip">
           Skip to content
         </a>
       
@@ -241,8 +241,6 @@
     
     <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
-      
-    
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
         Welcome
@@ -258,8 +256,6 @@
       
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
-  
-    
   
   
     <label class="md-nav__title" for="__toc">
@@ -519,8 +515,6 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon">
@@ -605,18 +599,17 @@
                   
                 
                 
-                <h1 id="intervene">Intervene<a class="headerlink" href="#intervene" title="Permanent link">🔗</a></h1>
-<p><em>Hassle free HTTP(S) API proxying for development</em></p>
+                  <h1>Welcome</h1>
+                
+                <p><strong>Hassle free HTTP(S) API proxying for development</strong></p>
 <p>Quickly mock endpoints in HTTP(S) APIs, edit requests and responses, proxy everything else to your real API.</p>
 <h2 id="feature-summary">Feature summary<a class="headerlink" href="#feature-summary" title="Permanent link">🔗</a></h2>
 <ul>
-<li>Automatic self-signed certificate generation and trusting the certificate for chrome &amp; safari</li>
-<li>Automatic writing entry to /etc/hosts, and skipping for the real</li>
-<li>Skips /etc/hosts when proxying the request, so proxying a public address is straight forward</li>
+<li>Respond to specific endpoints with JSON responses, proxy everything else to your real server</li>
+<li>Alter requests and/or responses before/after proxying to your real server</li>
 <li>Config file can be as simple as an endpoint and some JSON to return</li>
-<li>Edit requests before proxying (including modifying headers &amp; the URL)</li>
-<li>Edit responses after proxying but before returning to the client</li>
 <li>Automatic CORS support</li>
+<li>Automatic HTTPS support (self-signed certificate generation and trusting the certificate for chrome &amp; safari)</li>
 </ul>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">🔗</a></h2>
 <p>Let's say you've got a website that accesses your API at https://mycompany.com/api.  There's a <code>GET /api/cat</code> that returns some JSON information (<code>name</code>, <code>color</code>, <code>image</code>) about a cat. You're planning a major update in the backend to add <code>GET /api/dog</code>. It's going to take the backend developers a few days to get that implemented, but you want to start work on the frontend already.</p>

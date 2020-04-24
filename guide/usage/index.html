@@ -56,7 +56,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#create-config" class="md-skip">
+        <a href="#create-lturlgt-create-and-start-a-new-proxy" class="md-skip">
           Skip to content
         </a>
       
@@ -306,22 +306,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#create-config" class="md-nav__link">
-    Create config
+  <a href="#create-lturlgt-create-and-start-a-new-proxy" class="md-nav__link">
+    create &amp;lt;url&amp;gt;: Create and start a new proxy
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#starting-with-a-config-file" class="md-nav__link">
-    Starting with a config file
+  <a href="#start-ltconfig-pathgt-start-a-proxy-from-a-given-config-file" class="md-nav__link">
+    start &amp;lt;config-path&amp;gt;: Start a proxy from a given config file
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#config-from-http" class="md-nav__link">
-    Config from HTTP
+  <a href="#generate-cert-lthostnamegt-generate-a-self-signed-certificate" class="md-nav__link">
+    generate-cert &amp;lt;hostname&amp;gt;: Generate a self signed certificate
   </a>
   
 </li>
@@ -493,22 +493,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#create-config" class="md-nav__link">
-    Create config
+  <a href="#create-lturlgt-create-and-start-a-new-proxy" class="md-nav__link">
+    create &amp;lt;url&amp;gt;: Create and start a new proxy
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#starting-with-a-config-file" class="md-nav__link">
-    Starting with a config file
+  <a href="#start-ltconfig-pathgt-start-a-proxy-from-a-given-config-file" class="md-nav__link">
+    start &amp;lt;config-path&amp;gt;: Start a proxy from a given config file
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#config-from-http" class="md-nav__link">
-    Config from HTTP
+  <a href="#generate-cert-lthostnamegt-generate-a-self-signed-certificate" class="md-nav__link">
+    generate-cert &amp;lt;hostname&amp;gt;: Generate a self signed certificate
   </a>
   
 </li>
@@ -535,7 +535,8 @@
                 
                   <h1>Usage</h1>
                 
-                <h3 id="create-config">Create config<a class="headerlink" href="#create-config" title="Permanent link">🔗</a></h3>
+                <p>Intervene has a handful of commands that each take options:</p>
+<h3 id="create-lturlgt-create-and-start-a-new-proxy"><code>create &lt;url&gt;</code>: Create and start a new proxy<a class="headerlink" href="#create-lturlgt-create-and-start-a-new-proxy" title="Permanent link">🔗</a></h3>
 <p>Create a proxy to api.mycompany.com</p>
 <div class="highlight"><pre><span></span><code>intervene create https://api.mycompany.com -e
 </code></pre></div>
@@ -543,16 +544,23 @@
 <p>This creates a sample config file (called api.mycompany.com.ts), and opens the file in your editor (<code>TS_EDITOR</code>, <code>VISUAL</code> or <code>EDITOR</code> environment variables - it's advisable that these are not console editors, as the console is also used for logging from the proxy). If your editor has typescript support, you'll get autocompletion and documentation when editing the config. The proxy is automatically started. If this is a HTTPS target, a self-signed certificate is generated and trusted as part of the startup process.</p>
 <p>The import statement is generated from the absolute location of the module, which might be in your /usr/local/lib/node_modules directory if you've installed <code>intervene</code> globally. This is actually less of a problem that it seems (especially when sharing configurations, for instance by checking them in to your repo), as the path for the import is automatically patched when starting the proxy.  For instance, even if the import is <code>import { ProxyConfig } from '/foo/bar/intervene';</code>, it will still work even though <code>/foo/bar</code> doesn't exist, because the path gets patched to the path of the current <code>intervene</code> module before the file is imported.</p>
 <p>Saving the config file automatically reloads it and reconfigures the proxy.</p>
-<h3 id="starting-with-a-config-file">Starting with a config file<a class="headerlink" href="#starting-with-a-config-file" title="Permanent link">🔗</a></h3>
+<h3 id="start-ltconfig-pathgt-start-a-proxy-from-a-given-config-file"><code>start &lt;config-path&gt;</code>: Start a proxy from a given config file<a class="headerlink" href="#start-ltconfig-pathgt-start-a-proxy-from-a-given-config-file" title="Permanent link">🔗</a></h3>
 <p>To start a proxy with a given config file:</p>
 <div class="highlight"><pre><span></span><code>intervene start my-config.ts
 </code></pre></div>
 
-<h3 id="config-from-http">Config from HTTP<a class="headerlink" href="#config-from-http" title="Permanent link">🔗</a></h3>
 <p>It's also possible to use config files from HTTP(s) locations,</p>
-<p>e.g.</p>
 <div class="highlight"><pre><span></span><code>intervene start https://gist.mycompany.com/raw/myconfig.ts
 </code></pre></div>
+
+<h3 id="generate-cert-lthostnamegt-generate-a-self-signed-certificate"><code>generate-cert &lt;hostname&gt;</code>: Generate a self signed certificate<a class="headerlink" href="#generate-cert-lthostnamegt-generate-a-self-signed-certificate" title="Permanent link">🔗</a></h3>
+<p>Generate a self signed certificate for use outside of <code>intervene</code>. There's very few options here, it just produces a valid certificate for a domain, which is easier than finding all the right options for openssl.</p>
+<p>Options:</p>
+<ul>
+<li><code>-a</code> <code>--notafter</code> Date in ISO8601 (<code>YYYY-MM-DDTHH:MM:SSZ</code>) format the certificate should be valid <em>until</em>. Defaults to 7 days from the current date.</li>
+<li><code>-b</code> <code>--notbefore</code> Date in ISO8601 (<code>YYYY-MM-DDTHH:MM:SSZ</code>) format the certificate should be valid <em>form</em>. Defaults to 1 hour ago.</li>
+<li><code>-f</code> <code>--filename</code> Filename to write the certificate to (in PEM format). The key file will be the same file but with a <code>.key</code> extension. Defaults to <code>&lt;hostname&gt;.pem</code></li>
+</ul>
                 
               
               
