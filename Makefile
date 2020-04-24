@@ -23,3 +23,7 @@ integration-test: build
 .PHONY: publish
 publish: node_modules build
 	npm publish
+
+mkdocs:
+	python3 -m pip install -r requirements.txt
+	python3 -m mkdocs build

@@ -1,0 +1,46 @@
+site_name: intervene
+repo_name: intervene
+repo_url: https://github.com/soundcloud/intervene
+
+dev_addr: 0.0.0.0:8000
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+  - pymdownx.superfences
+  - pymdownx.details
+  - toc:
+      permalink: 🔗
+
+# By default nav will contain an alphanumerically sorted, nested list of all the Markdown files found within the docs_dir and its sub-directories.
+# Index files will always be listed first within a sub-section.
+#
+# Here we have a custom nav block allowing for external links.
+
+nav:
+  - Intervene:
+    - Welcome: index.md
+    - Guide:
+      - Usage: guide/usage.md
+      - Delaying / slowing down responses: guide/delaying-responses.md
+      - Logging and Debugging: guide/debugging.md
+      - Typed routes: guide/typed-routes.md
+      - Certificates & HTTPS: guide/certificates.md
+      - 3rd party requests: guide/making-requests.md
+      - F.A.Q.: guide/faq.md
+    - Reference:
+      - Configuration: reference/configuration.md
+      - Route handlers: reference/route-handlers.md
+
+theme:
+  name: 'material'
+  palette:
+    primary: 'orange'
+    accent: 'deep-purple'
+  features:
+    - tabs
+    - instant
