@@ -24,6 +24,11 @@ integration-test: build
 publish: node_modules build
 	npm publish
 
+.PHONY: mkdocs
 mkdocs:
 	python3 -m pip install -r requirements.txt
 	python3 -m mkdocs build
+
+.PHONY: publish-docs
+publish-docs: mkdocs
+	python3 -m mkdocs gh-deploy
