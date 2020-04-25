@@ -21,7 +21,7 @@ export default config;
 `ProxyConfig` has the following members (where only `target` is mandatory)
 
 - `target`: The URL that should be proxied to. Note that paths here are **not** supported.
-- `localUrl`: The local scheme, hostname and optionally port to listen on. If this is not present, the target is used as the localUrl
+- `localUrl`: The local scheme, hostname and optionally port to listen on. If this is not present, the target is used as the localUrl. See [directing to alternate hosts](../guide/alternative-hosts.md)
 - `targetHeaders`: An object with headers to override when making proxy calls. Examples of headers that can be useful here are `host` and `x-forwarded-proto`.
 - `writeEtcHosts`: Boolean. If this is true, `/etc/hosts` will be written to with the localUrl hostname or target hostname. Default `true`
 - `skipEtcHosts`: Boolean. If this is true, `/etc/hosts` will not be used when looking up the IP address to connect to when proxying. This is the default, as it enables writing a public hostname to `/etc/hosts` (e.g. `api.mycompany.com`) and then proxying to the _real_ address. Default `true`.

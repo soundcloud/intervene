@@ -29,6 +29,11 @@ mkdocs:
 	python3 -m pip install -r requirements.txt
 	python3 -m mkdocs build
 
+.PHONY: serve-docs
+serve-docs:
+	python3 -m pip install -r requirements.txt
+	python3 -m mkdocs serve
+
 .PHONY: publish-docs
 publish-docs: mkdocs
 	python3 -m mkdocs gh-deploy

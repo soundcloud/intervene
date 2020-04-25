@@ -25,7 +25,10 @@ nav:
   - Intervene:
     - Welcome: index.md
     - Guide:
+      - Installation: reference/installation.md
       - Usage: guide/usage.md
+      - Directing to an alternate host: guide/alternative-hosts.md
+      - CORS: guide/cors.md
       - Delaying / slowing down responses: guide/delaying-responses.md
       - Logging and Debugging: guide/debugging.md
       - Typed routes: guide/typed-routes.md
@@ -33,6 +36,7 @@ nav:
       - 3rd party requests: guide/making-requests.md
       - F.A.Q.: guide/faq.md
     - Reference:
+      - Installation: reference/installation.md
       - Configuration: reference/configuration.md
       - Route handlers: reference/route-handlers.md
 
