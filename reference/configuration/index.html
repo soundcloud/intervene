@@ -273,8 +273,44 @@
 
 
   <li class="md-nav__item">
+    <a href="../installation/" title="Installation" class="md-nav__link">
+      Installation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../guide/usage/" title="Usage" class="md-nav__link">
       Usage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../guide/alternative-hosts/" title="Directing to an alternate host" class="md-nav__link">
+      Directing to an alternate host
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../guide/cors/" title="CORS" class="md-nav__link">
+      CORS
     </a>
   </li>
 
@@ -382,6 +418,18 @@
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../installation/" title="Installation" class="md-nav__link">
+      Installation
+    </a>
+  </li>
+
         
           
           
@@ -538,7 +586,7 @@
 <p><code>ProxyConfig</code> has the following members (where only <code>target</code> is mandatory)</p>
 <ul>
 <li><code>target</code>: The URL that should be proxied to. Note that paths here are <strong>not</strong> supported.</li>
-<li><code>localUrl</code>: The local scheme, hostname and optionally port to listen on. If this is not present, the target is used as the localUrl</li>
+<li><code>localUrl</code>: The local scheme, hostname and optionally port to listen on. If this is not present, the target is used as the localUrl. See <a href="../../guide/alternative-hosts/">directing to alternate hosts</a></li>
 <li><code>targetHeaders</code>: An object with headers to override when making proxy calls. Examples of headers that can be useful here are <code>host</code> and <code>x-forwarded-proto</code>.</li>
 <li><code>writeEtcHosts</code>: Boolean. If this is true, <code>/etc/hosts</code> will be written to with the localUrl hostname or target hostname. Default <code>true</code></li>
 <li><code>skipEtcHosts</code>: Boolean. If this is true, <code>/etc/hosts</code> will not be used when looking up the IP address to connect to when proxying. This is the default, as it enables writing a public hostname to <code>/etc/hosts</code> (e.g. <code>api.mycompany.com</code>) and then proxying to the <em>real</em> address. Default <code>true</code>.</li>
@@ -598,7 +646,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../../guide/faq/" title="F.A.Q." class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../installation/" title="Installation" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
             </div>
@@ -607,7 +655,7 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                F.A.Q.
+                Installation
               </div>
             </div>
           </a>
