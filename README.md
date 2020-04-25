@@ -1,3 +1,9 @@
+![Build status](https://api.cirrus-ci.com/github/soundcloud/intervene.svg)
+![node.js 8](https://api.cirrus-ci.com/github/soundcloud/intervene.svg?task=test_node8) ![node.js 10](https://api.cirrus-ci.com/github/soundcloud/intervene.svg?task=test_node10) ![node.js 12](https://api.cirrus-ci.com/github/soundcloud/intervene.svg?task=test_node12) ![node.js 14](https://api.cirrus-ci.com/github/soundcloud/intervene.svg?task=test_node14)
+
+![npm version](https://img.shields.io/npm/v/intervene)
+
+
 # Intervene
 
 _Hassle free HTTP(S) API proxying for development_
