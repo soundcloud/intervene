@@ -339,7 +339,8 @@ describe('intervene proxy', () => {
           copyFile(path.join(__dirname, 'configs', 'simple2.ts'), tmpPath)
         )
         .then(() => {
-          return new Promise((resolve, reject) => setTimeout(resolve, 4000));
+          // the wait time is long to (sadly) improve the reliability on shared CI infrastructure
+          return new Promise((resolve, reject) => setTimeout(resolve, 8000));
         })
         .then(() => {
           return expect('/foo', 'to provide response', {
@@ -387,7 +388,7 @@ describe('intervene proxy', () => {
           );
         })
         .then(() => {
-          return new Promise((resolve, reject) => setTimeout(resolve, 4000));
+          return new Promise((resolve, reject) => setTimeout(resolve, 8000));
         })
         .then(() => {
           return expect('/foo', 'to provide response', {
@@ -408,7 +409,7 @@ describe('intervene proxy', () => {
           );
         })
         .then(() => {
-          return new Promise((resolve, reject) => setTimeout(resolve, 4000));
+          return new Promise((resolve, reject) => setTimeout(resolve, 8000));
         })
         .then(() => {
           return expect('/foo', 'to provide response', {
