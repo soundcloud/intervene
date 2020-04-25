@@ -1,19 +1,19 @@
 test_node8_task:
   container:
-    image: node:8-jessie
-  test_script: make test DEBUG_PROXY=1
+    image: node:8-buster
+  test_script: make test
 
 test_node10_task:
   container:
-    image: node:10-jessie
-  test_script: make test DEBUG_PROXY=1
+    image: node:10-buster
+  test_script: make test
 
 test_node12_task:
   container:
-    image: node:12-jessie
-  test_script: make test DEBUG_PROXY=1
+    image: node:12-buster
+  test_script: make test
 
 test_node14_task:
   container:
-    image: node:14-jessie
-  test_script: make test DEBUG_PROXY=1
+    image: node:14-buster
+  test_script: make test
