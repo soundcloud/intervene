@@ -1,5 +1,5 @@
 import { Server } from '@hapi/hapi';
-import * as joi from '@hapi/joi';
+import * as joi from 'joi';
 import * as url from 'url';
 
 export function createServer(): Server {
@@ -62,9 +62,9 @@ const httpsServer = new Server({
       path: '/respond201',
       options: {
         validate: {
-          payload: joi.object({
-            dummyHost: joi.string().hostname()
-          })
+          payload: {
+            dummyHost: joi.string()
+          }
         },
         handler(request, h) {
           const { dummyHost } = request.payload as any;

@@ -1,7 +1,7 @@
 import * as Bluebird from 'bluebird';
 import { Server } from '@hapi/hapi';
 import * as hostile from 'hostile';
-import * as joi from '@hapi/joi';
+import * as joi from 'joi';
 import { spawn } from 'child_process';
 import { log, useLogger, Logger } from './logger';
 import * as susie from 'susie';
@@ -81,9 +81,9 @@ async function adminServer({ port }): Promise<Server> {
       path: `/${secret}/hosts`,
       options: {
         validate: {
-          payload: joi.object({
+          payload: {
             hostname: joi.string()
-          })
+          }
         },
         async handler(request, h): Promise<HostAdditionResponse> {
           try {
@@ -121,10 +121,10 @@ async function adminServer({ port }): Promise<Server> {
       path: `/${secret}/trust`,
       options: {
         validate: {
-          payload: joi.object({
+          payload: {
             certFilename: joi.string(),
             homeDirectory: joi.string()
-          })
+          }
         },
         async handler(request, h) {
           const { certFilename, homeDirectory } = request.payload as any;
@@ -194,10 +194,10 @@ async function adminServer({ port }): Promise<Server> {
       path: `/${secret}/untrust`,
       options: {
         validate: {
-          payload: joi.object({
+          payload: {
             certFilename: joi.string(),
             homeDirectory: joi.string()
-          })
+          }
         },
         async handler(request, h) {
           const { certFilename, homeDirectory } = request.payload as any;
@@ -211,7 +211,7 @@ async function adminServer({ port }): Promise<Server> {
       path: `/${secret}/port-proxy`,
       options: {
         validate: {
-          payload: joi.object({
+          payload: {
             target: joi.string(),
             localPort: joi.number(),
             certificatePath: joi.string(),
@@ -227,7 +227,7 @@ async function adminServer({ port }): Promise<Server> {
                 credentials: joi.boolean()
               })
             ]
-          })
+          }
         },
         handler(request, h) {
           const payload: any = request.payload;
@@ -274,9 +274,9 @@ async function adminServer({ port }): Promise<Server> {
       path: `/${secret}/stop-port-proxy`,
       options: {
         validate: {
-          payload: joi.object({
+          payload: {
             port: joi.number()
-          })
+          }
         },
         handler() {
           const cleanup = portProxies[port].cleanup;
