@@ -7,7 +7,7 @@ Note that you can change the host of the `url` as part of the request before you
 
 
 
-### `httpRequest({ requestParams })`
+### `httpRequest({ requestParams }):` [`Response`](../reference/route-handlers.md#response-object)
 
 A function that makes an HTTP request. The response object is the same type as the `proxy()` method, so the response can be returned directly or modified and then returned. Obviously it's also possible to make a request and then return some other response as usual.
 Request parameters are defined as:

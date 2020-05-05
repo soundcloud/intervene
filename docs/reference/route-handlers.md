@@ -24,8 +24,9 @@ Routes definitions can be:
     - The (optionally altered) response object from calling `proxy()` (the third argument to the route function)
     - A promise that resolves to any of the above values
 
+## Examples of modifying requests
 
-## Change the HTTP method
+### Change the HTTP method
 
 Set `req.method` to whichever method you need to proxy to.
 
@@ -47,7 +48,7 @@ const config: ProxyConfig = {
 export default config;
 ```
 
-## Change URL properties
+### Change URL properties
 
 `req.url` is the parsed URL of the **target**. This means you can update the host, path or anything else to update where the request will be proxied to.
 
@@ -80,7 +81,7 @@ const config: ProxyConfig = {
 export default config;
 ```
 
-### Response object
+## Response object
 
 The response object is returned from calls to `proxy()` and also calls to [`httpRequest`](../guide/making-requests.md) contains the following properties
 
@@ -91,4 +92,3 @@ The response object is returned from calls to `proxy()` and also calls to [`http
 * `headers`: <`Array<string | string[] | undefined>`> An object with key value pairs of the header values
 
 A route handler can return the response object directly, or modify it and return it.  Setting `text` or `rawResponse` properties will override the response body - whichever is set last takes precedence.
-kk

@@ -33,7 +33,9 @@ nav:
       - Logging and Debugging: guide/debugging.md
       - Typed routes: guide/typed-routes.md
       - Certificates & HTTPS: guide/certificates.md
+      - Firefox: guide/firefox.md
       - 3rd party requests: guide/making-requests.md
+      - HSTS: guide/hsts.md
       - F.A.Q.: guide/faq.md
     - Reference:
       - Installation: reference/installation.md
