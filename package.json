@@ -48,8 +48,8 @@
   },
   "devDependencies": {
     "http-server": "^0.11.1",
-    "jest": "^24.8.0",
-    "lodash": "^4.17.11",
+    "jest": "^24.9.0",
+    "lodash": "^4.17.15",
     "magicpen-media": "^1.5.1",
     "prettier": "^1.14.3",
     "sinon": "^6.3.4",
