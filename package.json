@@ -28,7 +28,7 @@
     "@types/node-forge": "^0.8.2",
     "@types/prettier": "^1.16.3",
     "@types/yargs": "^12.0.0",
-    "axios": "^0.18.0",
+    "axios": "^0.19.2",
     "bluebird": "^3.5.3",
     "chalk": "^2.4.1",
     "eventsource": "^1.0.7",
