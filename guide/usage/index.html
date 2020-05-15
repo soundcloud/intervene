@@ -11,7 +11,7 @@
       
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.1.5">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.1.5">
     
     
       
@@ -56,7 +56,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#create-lturlgt-create-and-start-a-new-proxy" class="md-skip">
+        <a href="#create-url-create-and-start-a-new-proxy" class="md-skip">
           Skip to content
         </a>
       
@@ -318,22 +318,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#create-lturlgt-create-and-start-a-new-proxy" class="md-nav__link">
-    create &amp;lt;url&amp;gt;: Create and start a new proxy
+  <a href="#create-url-create-and-start-a-new-proxy" class="md-nav__link">
+    create &lt;url&gt;: Create and start a new proxy
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#start-ltconfig-pathgt-start-a-proxy-from-a-given-config-file" class="md-nav__link">
-    start &amp;lt;config-path&amp;gt;: Start a proxy from a given config file
+  <a href="#start-config-path-start-a-proxy-from-a-given-config-file" class="md-nav__link">
+    start &lt;config-path&gt;: Start a proxy from a given config file
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#generate-cert-lthostnamegt-generate-a-self-signed-certificate" class="md-nav__link">
-    generate-cert &amp;lt;hostname&amp;gt;: Generate a self signed certificate
+  <a href="#generate-cert-hostname-generate-a-self-signed-certificate" class="md-nav__link">
+    generate-cert &lt;hostname&gt;: Generate a self signed certificate
   </a>
   
 </li>
@@ -565,22 +565,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#create-lturlgt-create-and-start-a-new-proxy" class="md-nav__link">
-    create &amp;lt;url&amp;gt;: Create and start a new proxy
+  <a href="#create-url-create-and-start-a-new-proxy" class="md-nav__link">
+    create &lt;url&gt;: Create and start a new proxy
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#start-ltconfig-pathgt-start-a-proxy-from-a-given-config-file" class="md-nav__link">
-    start &amp;lt;config-path&amp;gt;: Start a proxy from a given config file
+  <a href="#start-config-path-start-a-proxy-from-a-given-config-file" class="md-nav__link">
+    start &lt;config-path&gt;: Start a proxy from a given config file
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#generate-cert-lthostnamegt-generate-a-self-signed-certificate" class="md-nav__link">
-    generate-cert &amp;lt;hostname&amp;gt;: Generate a self signed certificate
+  <a href="#generate-cert-hostname-generate-a-self-signed-certificate" class="md-nav__link">
+    generate-cert &lt;hostname&gt;: Generate a self signed certificate
   </a>
   
 </li>
@@ -608,7 +608,7 @@
                   <h1>Usage</h1>
                 
                 <p>Intervene has a handful of commands that each take options:</p>
-<h3 id="create-lturlgt-create-and-start-a-new-proxy"><code>create &lt;url&gt;</code>: Create and start a new proxy<a class="headerlink" href="#create-lturlgt-create-and-start-a-new-proxy" title="Permanent link">🔗</a></h3>
+<h3 id="create-url-create-and-start-a-new-proxy"><code>create &lt;url&gt;</code>: Create and start a new proxy<a class="headerlink" href="#create-url-create-and-start-a-new-proxy" title="Permanent link">🔗</a></h3>
 <p>Create a proxy to api.mycompany.com</p>
 <div class="highlight"><pre><span></span><code>intervene create https://api.mycompany.com -e
 </code></pre></div>
@@ -616,7 +616,7 @@
 <p>This creates a sample config file (called api.mycompany.com.ts), and opens the file in your editor (<code>TS_EDITOR</code>, <code>VISUAL</code> or <code>EDITOR</code> environment variables - it's advisable that these are not console editors, as the console is also used for logging from the proxy). If your editor has typescript support, you'll get autocompletion and documentation when editing the config. The proxy is automatically started. If this is a HTTPS target, a self-signed certificate is generated and trusted as part of the startup process.</p>
 <p>The import statement is generated from the absolute location of the module, which might be in your /usr/local/lib/node_modules directory if you've installed <code>intervene</code> globally. This is actually less of a problem that it seems (especially when sharing configurations, for instance by checking them in to your repo), as the path for the import is automatically patched when starting the proxy.  For instance, even if the import is <code>import { ProxyConfig } from '/foo/bar/intervene';</code>, it will still work even though <code>/foo/bar</code> doesn't exist, because the path gets patched to the path of the current <code>intervene</code> module before the file is imported.</p>
 <p>Saving the config file automatically reloads it and reconfigures the proxy.</p>
-<h3 id="start-ltconfig-pathgt-start-a-proxy-from-a-given-config-file"><code>start &lt;config-path&gt;</code>: Start a proxy from a given config file<a class="headerlink" href="#start-ltconfig-pathgt-start-a-proxy-from-a-given-config-file" title="Permanent link">🔗</a></h3>
+<h3 id="start-config-path-start-a-proxy-from-a-given-config-file"><code>start &lt;config-path&gt;</code>: Start a proxy from a given config file<a class="headerlink" href="#start-config-path-start-a-proxy-from-a-given-config-file" title="Permanent link">🔗</a></h3>
 <p>To start a proxy with a given config file:</p>
 <div class="highlight"><pre><span></span><code>intervene start my-config.ts
 </code></pre></div>
@@ -625,7 +625,7 @@
 <div class="highlight"><pre><span></span><code>intervene start https://gist.mycompany.com/raw/myconfig.ts
 </code></pre></div>
 
-<h3 id="generate-cert-lthostnamegt-generate-a-self-signed-certificate"><code>generate-cert &lt;hostname&gt;</code>: Generate a self signed certificate<a class="headerlink" href="#generate-cert-lthostnamegt-generate-a-self-signed-certificate" title="Permanent link">🔗</a></h3>
+<h3 id="generate-cert-hostname-generate-a-self-signed-certificate"><code>generate-cert &lt;hostname&gt;</code>: Generate a self signed certificate<a class="headerlink" href="#generate-cert-hostname-generate-a-self-signed-certificate" title="Permanent link">🔗</a></h3>
 <p>Generate a self signed certificate for use outside of <code>intervene</code>. There's very few options here, it just produces a valid certificate for a domain, which is easier than finding all the right options for openssl.</p>
 <p>Options:</p>
 <ul>
