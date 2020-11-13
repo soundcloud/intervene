@@ -1,3 +1,7 @@
+2.8.6
+=====
+* Update app name displayed when prompting for password
+
 2.8.5
 =====
 * Make @types/jest a dev dependency
