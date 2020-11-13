@@ -138,7 +138,7 @@ async function startAdminServer(): Promise<{
   sudoExec(
     `${process.argv[0]} "${cliJs}" admin ${port} --secret "${adminSecret}"`,
     {
-      name: 'Developer API Proxy'
+      name: 'Intervene'
     }
   ).catch((e) => {
     // Ignore signals to stop the server
