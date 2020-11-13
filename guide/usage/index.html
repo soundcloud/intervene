@@ -612,7 +612,6 @@
 <p>Create a proxy to api.mycompany.com</p>
 <div class="highlight"><pre><span></span><code>intervene create https://api.mycompany.com -e
 </code></pre></div>
-
 <p>This creates a sample config file (called api.mycompany.com.ts), and opens the file in your editor (<code>TS_EDITOR</code>, <code>VISUAL</code> or <code>EDITOR</code> environment variables - it's advisable that these are not console editors, as the console is also used for logging from the proxy). If your editor has typescript support, you'll get autocompletion and documentation when editing the config. The proxy is automatically started. If this is a HTTPS target, a self-signed certificate is generated and trusted as part of the startup process.</p>
 <p>The import statement is generated from the absolute location of the module, which might be in your /usr/local/lib/node_modules directory if you've installed <code>intervene</code> globally. This is actually less of a problem that it seems (especially when sharing configurations, for instance by checking them in to your repo), as the path for the import is automatically patched when starting the proxy.  For instance, even if the import is <code>import { ProxyConfig } from '/foo/bar/intervene';</code>, it will still work even though <code>/foo/bar</code> doesn't exist, because the path gets patched to the path of the current <code>intervene</code> module before the file is imported.</p>
 <p>Saving the config file automatically reloads it and reconfigures the proxy.</p>
@@ -620,11 +619,9 @@
 <p>To start a proxy with a given config file:</p>
 <div class="highlight"><pre><span></span><code>intervene start my-config.ts
 </code></pre></div>
-
 <p>It's also possible to use config files from HTTP(s) locations,</p>
 <div class="highlight"><pre><span></span><code>intervene start https://gist.mycompany.com/raw/myconfig.ts
 </code></pre></div>
-
 <h3 id="generate-cert-hostname-generate-a-self-signed-certificate"><code>generate-cert &lt;hostname&gt;</code>: Generate a self signed certificate<a class="headerlink" href="#generate-cert-hostname-generate-a-self-signed-certificate" title="Permanent link">🔗</a></h3>
 <p>Generate a self signed certificate for use outside of <code>intervene</code>. There's very few options here, it just produces a valid certificate for a domain, which is easier than finding all the right options for openssl.</p>
 <p>Options:</p>

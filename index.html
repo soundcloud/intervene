@@ -703,7 +703,6 @@
 
 <span class="kr">export</span> <span class="k">default</span> <span class="nx">config</span><span class="p">;</span>
 </code></pre></div>
-
 <p>(Don't worry about path in the <code>import</code> statement. It's going to depend on how you installed <code>intervene</code>, but <code>intervene</code> is smart enough to fix this path dynamically when loading the config file)</p>
 <p>You should see the site still works as normal (in chrome at least, you'll get a certificate warning in Firefox which you'll need to accept).  <code>GET /api/cat</code> still responds the same.</p>
 <p>Now let's change the configuration to include a new route:
@@ -756,7 +755,6 @@ There's also the option to <a href="guide/typed-routes/">build types</a> around 
 <p>You need at least <a href="https://nodejs.org">node 8</a></p>
 <div class="highlight"><pre><span></span><code>npm install -g intervene
 </code></pre></div>
-
 <h2 id="example-route-configurations">Example route configurations<a class="headerlink" href="#example-route-configurations" title="Permanent link">🔗</a></h2>
 <ol>
 <li>Return a simple JSON response for <code>/users/&lt;anything&gt;</code></li>
@@ -767,7 +765,6 @@ There's also the option to <a href="guide/typed-routes/">build types</a> around 
    <span class="nx">here</span><span class="o">:</span> <span class="s1">&#39;can go anything&#39;</span>
 <span class="p">}</span>
 </code></pre></div>
-
 <p>Example request / response</p>
 <div class="highlight"><pre><span></span><code>GET /users/123456
 
@@ -776,13 +773,11 @@ content-type: application-json; charset=utf-8
 
 { &quot;fixed&quot;: true, &quot;jsonResponse&quot;: true, &quot;here&quot;: &quot;can go anything&quot; }
 </code></pre></div>
-
 <ol>
 <li>Return a simple string</li>
 </ol>
 <div class="highlight"><pre><span></span><code><span class="s1">&#39;/fixedresponse&#39;</span><span class="o">:</span> <span class="s1">&#39;plain text response&#39;</span><span class="p">,</span>
 </code></pre></div>
-
 <p>This returns a simple plain text response</p>
 <ol>
 <li>Proxy a call and mutate the response</li>
@@ -795,14 +790,13 @@ content-type: application-json; charset=utf-8
   <span class="c1">// `body` contains the JSON from the response. Mutating it will mutate the response provided</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">realResponse</span><span class="p">.</span><span class="nx">body</span> <span class="o">&amp;&amp;</span> <span class="nx">realResponse</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">collection</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// Strip everything but the first item in the collection</span>
-    <span class="nx">realResponse</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nx">realResponse</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span>
+    <span class="nx">realResponse</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span> <span class="nx">realResponse</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span>
   <span class="p">}</span>
 
   <span class="c1">// And return it</span>
   <span class="k">return</span> <span class="nx">realResponse</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-
 <p>The calls the target, then mutates the response object, returning the mutated response.</p>
 <ol>
 <li>Modifying the request before proxying, then modifying the response</li>
@@ -816,7 +810,7 @@ content-type: application-json; charset=utf-8
   <span class="c1">// You can also access `req.textPayload` to alter it as a string, or `req.rawPayload` to alter it as a buffer.</span>
   <span class="c1">// Whichever property is set last takes precedence - for instance, setting `req.textPayload = &#39;replaced&#39;` after this</span>
   <span class="c1">// will overwrite the paylod with the string `replaced`</span>
-  <span class="nx">req</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">apiVersion</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="nx">req</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">apiVersion</span> <span class="o">=</span> <span class="mf">2</span><span class="p">;</span>
 
   <span class="c1">// Edit the request headers before proxying</span>
   <span class="c1">// Incoming request headers are all lowercased</span>
@@ -832,7 +826,6 @@ content-type: application-json; charset=utf-8
   <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
 <span class="p">},</span>
 </code></pre></div>
-
 <ol>
 <li>Construct a custom response</li>
 </ol>
@@ -840,12 +833,12 @@ content-type: application-json; charset=utf-8
       <span class="c1">// Return a custom response with a custom status code and headers</span>
 
       <span class="c1">// assuming called with `?arg=xxxx`</span>
-      <span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">some</span><span class="o">:</span> <span class="p">{</span> <span class="nx">json</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span> <span class="nx">queryArg</span><span class="o">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">url</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">arg</span> <span class="p">}</span> <span class="p">};</span>
+      <span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">some</span><span class="o">:</span> <span class="p">{</span> <span class="nx">json</span><span class="o">:</span> <span class="mf">4</span><span class="p">,</span> <span class="nx">queryArg</span><span class="o">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">url</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">arg</span> <span class="p">}</span> <span class="p">};</span>
 
       <span class="c1">// The `h` variable is the Hapi response toolkit</span>
       <span class="kr">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="nx">h</span><span class="p">.</span><span class="nx">response</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
       <span class="nx">response</span><span class="p">.</span><span class="nx">header</span><span class="p">(</span><span class="s1">&#39;x-response-header&#39;</span><span class="p">,</span> <span class="s1">&#39;new value&#39;</span><span class="p">);</span>
-      <span class="nx">response</span><span class="p">.</span><span class="nx">code</span><span class="p">(</span><span class="mi">202</span><span class="p">);</span>
+      <span class="nx">response</span><span class="p">.</span><span class="nx">code</span><span class="p">(</span><span class="mf">202</span><span class="p">);</span>
       <span class="nx">response</span><span class="p">.</span><span class="nx">type</span><span class="p">(</span><span class="s1">&#39;application/json&#39;</span><span class="p">);</span>
       <span class="k">return</span> <span class="nx">response</span><span class="p">;</span>
     <span class="p">}</span>
