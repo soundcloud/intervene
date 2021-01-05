@@ -782,9 +782,9 @@ content-type: application-json; charset=utf-8
 <ol>
 <li>Proxy a call and mutate the response</li>
 </ol>
-<div class="highlight"><pre><span></span><code><span class="s1">&#39;/tweets&#39;</span><span class="o">:</span> <span class="nx">async</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">h</span><span class="p">,</span> <span class="nx">proxy</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;/tweets&#39;</span><span class="o">:</span> <span class="k">async</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">h</span><span class="p">,</span> <span class="nx">proxy</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Call the target</span>
-  <span class="kr">const</span> <span class="nx">realResponse</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">proxy</span><span class="p">();</span>
+  <span class="kr">const</span> <span class="nx">realResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">proxy</span><span class="p">();</span>
 
   <span class="c1">// Mutate the response</span>
   <span class="c1">// `body` contains the JSON from the response. Mutating it will mutate the response provided</span>
@@ -801,7 +801,7 @@ content-type: application-json; charset=utf-8
 <ol>
 <li>Modifying the request before proxying, then modifying the response</li>
 </ol>
-<div class="highlight"><pre><span></span><code><span class="s1">&#39;POST /api/{path*}&#39;</span><span class="o">:</span> <span class="nx">async</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">h</span><span class="p">,</span> <span class="nx">proxy</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;POST /api/{path*}&#39;</span><span class="o">:</span> <span class="k">async</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">h</span><span class="p">,</span> <span class="nx">proxy</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Edit the request URL before proxying</span>
   <span class="c1">// (req.params is an object containing the path params, in this case `path`)</span>
   <span class="nx">req</span><span class="p">.</span><span class="nx">url</span><span class="p">.</span><span class="nx">pathname</span> <span class="o">=</span> <span class="s1">&#39;/api/v1/&#39;</span> <span class="o">+</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">path</span><span class="p">;</span>
@@ -817,7 +817,7 @@ content-type: application-json; charset=utf-8
   <span class="nx">req</span><span class="p">.</span><span class="nx">headers</span><span class="p">[</span><span class="s1">&#39;x-replaced-header&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;new or updated value&#39;</span><span class="p">;</span>
 
   <span class="c1">// Actually proxy the request</span>
-  <span class="kr">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">proxy</span><span class="p">();</span>
+  <span class="kr">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">proxy</span><span class="p">();</span>
 
   <span class="c1">// Edit the response headers after proxying</span>
   <span class="nx">res</span><span class="p">.</span><span class="nx">headers</span><span class="p">[</span><span class="s1">&#39;x-response-header&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;new or updated value&#39;</span><span class="p">;</span>
