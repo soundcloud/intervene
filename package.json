@@ -36,7 +36,7 @@
     "iconv-lite": "^0.4.24",
     "joi": "^13.6.0",
     "mkdirp": "^1.0.4",
-    "node-forge": "^0.8.2",
+    "node-forge": "^0.10.0",
     "sudo-prompt": "^8.2.3",
     "susie": "^3.0.0",
     "ts-node": "^8.10.1",
