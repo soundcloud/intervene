@@ -670,9 +670,9 @@
 <h2 id="examples-of-modifying-requests">Examples of modifying requests<a class="headerlink" href="#examples-of-modifying-requests" title="Permanent link">🔗</a></h2>
 <h3 id="change-the-http-method">Change the HTTP method<a class="headerlink" href="#change-the-http-method" title="Permanent link">🔗</a></h3>
 <p>Set <code>req.method</code> to whichever method you need to proxy to.</p>
-<div class="highlight"><pre><span></span><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ProxyConfig</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;intervene&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span> <span class="p">{</span> <span class="nx">ProxyConfig</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">&#39;intervene&#39;</span><span class="p">;</span>
 
-<span class="kr">const</span> <span class="nx">config</span>: <span class="kt">ProxyConfig</span> <span class="o">=</span> <span class="p">{</span>
+<span class="kd">const</span> <span class="nx">config</span>: <span class="kt">ProxyConfig</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;https://api.mycompany.com&#39;</span><span class="p">,</span>
 
   <span class="nx">routes</span><span class="o">:</span> <span class="p">{</span>
@@ -684,7 +684,7 @@
   <span class="p">}</span>
 <span class="p">};</span>
 
-<span class="kr">export</span> <span class="k">default</span> <span class="nx">config</span><span class="p">;</span>
+<span class="k">export</span> <span class="k">default</span> <span class="nx">config</span><span class="p">;</span>
 </code></pre></div>
 <h3 id="change-url-properties">Change URL properties<a class="headerlink" href="#change-url-properties" title="Permanent link">🔗</a></h3>
 <p><code>req.url</code> is the parsed URL of the <strong>target</strong>. This means you can update the host, path or anything else to update where the request will be proxied to.</p>
@@ -696,9 +696,9 @@
 <li><code>pathname</code>: the path (without the query)</li>
 <li><code>query</code>: the parsed query string as an object</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ProxyConfig</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;intervene&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span> <span class="p">{</span> <span class="nx">ProxyConfig</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">&#39;intervene&#39;</span><span class="p">;</span>
 
-<span class="kr">const</span> <span class="nx">config</span>: <span class="kt">ProxyConfig</span> <span class="o">=</span> <span class="p">{</span>
+<span class="kd">const</span> <span class="nx">config</span>: <span class="kt">ProxyConfig</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;https://api.mycompany.com&#39;</span><span class="p">,</span>
 
   <span class="nx">routes</span><span class="o">:</span> <span class="p">{</span>
@@ -713,7 +713,7 @@
   <span class="p">}</span>
 <span class="p">};</span>
 
-<span class="kr">export</span> <span class="k">default</span> <span class="nx">config</span><span class="p">;</span>
+<span class="k">export</span> <span class="k">default</span> <span class="nx">config</span><span class="p">;</span>
 </code></pre></div>
 <h2 id="response-object">Response object<a class="headerlink" href="#response-object" title="Permanent link">🔗</a></h2>
 <p>The response object is returned from calls to <code>proxy()</code> and also calls to <a href="../../guide/making-requests/"><code>httpRequest</code></a> contains the following properties</p>

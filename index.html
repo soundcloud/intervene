@@ -688,9 +688,9 @@
 <p>Run this on the command line (Mac or Linux)</p>
 <p><code>intervene create https://mycompany.com</code></p>
 <p>It's going to ask for admin privileges because it needs to override some things. It creates a file called <code>mycompany.com.ts</code>, which is an <code>intervene</code> config. Leave the process running and open the file.</p>
-<div class="highlight"><pre><span></span><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ProxyConfig</span><span class="p">,</span> <span class="nx">routeBuilder</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;/Users/foo/Library/node_modules/intervene&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span> <span class="p">{</span> <span class="nx">ProxyConfig</span><span class="p">,</span> <span class="nx">routeBuilder</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">&#39;/Users/foo/Library/node_modules/intervene&#39;</span><span class="p">;</span>
 
-<span class="kr">const</span> <span class="nx">config</span>: <span class="kt">ProxyConfig</span> <span class="o">=</span> <span class="p">{</span>
+<span class="kd">const</span> <span class="nx">config</span>: <span class="kt">ProxyConfig</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;https://mycompany.com&#39;</span><span class="p">,</span>
 
   <span class="nx">routes</span><span class="o">:</span> <span class="p">{</span>
@@ -701,12 +701,12 @@
   <span class="p">}</span>
 <span class="p">};</span>
 
-<span class="kr">export</span> <span class="k">default</span> <span class="nx">config</span><span class="p">;</span>
+<span class="k">export</span> <span class="k">default</span> <span class="nx">config</span><span class="p">;</span>
 </code></pre></div>
 <p>(Don't worry about path in the <code>import</code> statement. It's going to depend on how you installed <code>intervene</code>, but <code>intervene</code> is smart enough to fix this path dynamically when loading the config file)</p>
 <p>You should see the site still works as normal (in chrome at least, you'll get a certificate warning in Firefox which you'll need to accept).  <code>GET /api/cat</code> still responds the same.</p>
 <p>Now let's change the configuration to include a new route:
-<div class="highlight"><pre><span></span><code><span class="kr">const</span> <span class="nx">config</span>: <span class="kt">ProxyConfig</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span> <span class="nx">config</span>: <span class="kt">ProxyConfig</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;https://mycompany.com&#39;</span><span class="p">,</span>
 
   <span class="nx">routes</span><span class="o">:</span> <span class="p">{</span>
@@ -725,7 +725,7 @@
 <h3 id="altering-responses">Altering responses<a class="headerlink" href="#altering-responses" title="Permanent link">🔗</a></h3>
 <p>Another update is planned to also return the <code>age</code> of the cat. You don't want to mock the whole endpoint, you just want to add the <code>age</code> property to whatever the real backend returns.</p>
 <p>Let's make a method endpoint.</p>
-<p><div class="highlight"><pre><span></span><code><span class="kr">const</span> <span class="nx">config</span>: <span class="kt">ProxyConfig</span> <span class="o">=</span> <span class="p">{</span>
+<p><div class="highlight"><pre><span></span><code><span class="kd">const</span> <span class="nx">config</span>: <span class="kt">ProxyConfig</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;https://mycompany.com&#39;</span><span class="p">,</span>
 
   <span class="nx">routes</span><span class="o">:</span> <span class="p">{</span>
@@ -736,9 +736,9 @@
       <span class="nx">image</span><span class="o">:</span> <span class="s1">&#39;https://dogimages.com/bestdog.jpg&#39;</span>
     <span class="p">},</span>
 
-    <span class="s1">&#39;/api/cat&#39;</span><span class="o">:</span> <span class="nx">async</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">h</span><span class="p">,</span> <span class="nx">proxy</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="kr">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">proxy</span><span class="p">();</span>
-      <span class="nx">response</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+    <span class="s1">&#39;/api/cat&#39;</span><span class="o">:</span> <span class="k">async</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">h</span><span class="p">,</span> <span class="nx">proxy</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">proxy</span><span class="p">();</span>
+      <span class="nx">response</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="mf">7</span><span class="p">;</span>
       <span class="k">return</span> <span class="nx">response</span><span class="p">;</span>
     <span class="p">}</span>
 
@@ -784,7 +784,7 @@ content-type: application-json; charset=utf-8
 </ol>
 <div class="highlight"><pre><span></span><code><span class="s1">&#39;/tweets&#39;</span><span class="o">:</span> <span class="k">async</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">h</span><span class="p">,</span> <span class="nx">proxy</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
   <span class="c1">// Call the target</span>
-  <span class="kr">const</span> <span class="nx">realResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">proxy</span><span class="p">();</span>
+  <span class="kd">const</span> <span class="nx">realResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">proxy</span><span class="p">();</span>
 
   <span class="c1">// Mutate the response</span>
   <span class="c1">// `body` contains the JSON from the response. Mutating it will mutate the response provided</span>
@@ -817,7 +817,7 @@ content-type: application-json; charset=utf-8
   <span class="nx">req</span><span class="p">.</span><span class="nx">headers</span><span class="p">[</span><span class="s1">&#39;x-replaced-header&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;new or updated value&#39;</span><span class="p">;</span>
 
   <span class="c1">// Actually proxy the request</span>
-  <span class="kr">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">proxy</span><span class="p">();</span>
+  <span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">proxy</span><span class="p">();</span>
 
   <span class="c1">// Edit the response headers after proxying</span>
   <span class="nx">res</span><span class="p">.</span><span class="nx">headers</span><span class="p">[</span><span class="s1">&#39;x-response-header&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;new or updated value&#39;</span><span class="p">;</span>
@@ -833,10 +833,10 @@ content-type: application-json; charset=utf-8
       <span class="c1">// Return a custom response with a custom status code and headers</span>
 
       <span class="c1">// assuming called with `?arg=xxxx`</span>
-      <span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">some</span><span class="o">:</span> <span class="p">{</span> <span class="nx">json</span><span class="o">:</span> <span class="mf">4</span><span class="p">,</span> <span class="nx">queryArg</span><span class="o">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">url</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">arg</span> <span class="p">}</span> <span class="p">};</span>
+      <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">some</span><span class="o">:</span> <span class="p">{</span> <span class="nx">json</span><span class="o">:</span> <span class="mf">4</span><span class="p">,</span> <span class="nx">queryArg</span><span class="o">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">url</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">arg</span> <span class="p">}</span> <span class="p">};</span>
 
       <span class="c1">// The `h` variable is the Hapi response toolkit</span>
-      <span class="kr">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="nx">h</span><span class="p">.</span><span class="nx">response</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+      <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="nx">h</span><span class="p">.</span><span class="nx">response</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
       <span class="nx">response</span><span class="p">.</span><span class="nx">header</span><span class="p">(</span><span class="s1">&#39;x-response-header&#39;</span><span class="p">,</span> <span class="s1">&#39;new value&#39;</span><span class="p">);</span>
       <span class="nx">response</span><span class="p">.</span><span class="nx">code</span><span class="p">(</span><span class="mf">202</span><span class="p">);</span>
       <span class="nx">response</span><span class="p">.</span><span class="nx">type</span><span class="p">(</span><span class="s1">&#39;application/json&#39;</span><span class="p">);</span>

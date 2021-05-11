@@ -515,9 +515,9 @@
                 
                 <p>You can use a normal <code>console.log</code> etc from your configs (since 2.2.0), but also you can simply import the <code>log</code> function from the package and use either the log function directly or the helper methods.</p>
 <p>e.g.
-<div class="highlight"><pre><span></span><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">ProxyConfig</span><span class="p">,</span> <span class="nx">log</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;intervene&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span> <span class="p">{</span> <span class="nx">ProxyConfig</span><span class="p">,</span> <span class="nx">log</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">&#39;intervene&#39;</span><span class="p">;</span>
 
-<span class="kr">const</span> <span class="nx">config</span><span class="o">:</span> <span class="nx">ProxyConfig</span> <span class="o">=</span> <span class="p">{</span>
+<span class="kd">const</span> <span class="nx">config</span><span class="o">:</span> <span class="nx">ProxyConfig</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;https://api.mycompany.com&#39;</span><span class="p">,</span>
   <span class="nx">routes</span><span class="o">:</span> <span class="p">{</span>
     <span class="s1">&#39;/foo&#39;</span><span class="o">:</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">h</span><span class="p">,</span> <span class="nx">proxy</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
@@ -533,7 +533,7 @@
   <span class="p">}</span>
 <span class="p">};</span>
 
-<span class="kr">export</span> <span class="k">default</span> <span class="nx">config</span><span class="p">;</span>
+<span class="k">export</span> <span class="k">default</span> <span class="nx">config</span><span class="p">;</span>
 </code></pre></div></p>
 <p><code>log</code> contains methods <code>debug</code>, <code>info</code>, <code>warn</code> and <code>error</code> methods, all taking a string and optional object with more information.</p>
                 
