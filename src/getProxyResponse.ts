@@ -19,16 +19,18 @@ export async function getProxyResponse(
   }
 
   const requestUrl = url.format({
-    ...request.url,
+    protocol: request.url.protocol,
+    slashes: request.url.slashes,
+    auth: request.url.auth,
     host: request.url.port ? host + ':' + request.url.port : host,
     hostname: undefined,
-    path: undefined,
     pathname: request.url.pathname,
     query: request.url.query
   });
+
   const requestHeaders = {
     ...request.headers,
-    host: parsedHost.hostname,
+    host: parsedHost.hostname || undefined,
     ...request.overrideHeaders
   };
 
@@ -40,7 +42,7 @@ export async function getProxyResponse(
     method: request.method,
     url: requestUrl,
     headers: requestHeaders,
-    hostname: parsedHost.hostname,
+    hostname: parsedHost.hostname || undefined,
     payload: request.getCalculatedRawPayload(),
     rejectUnauthorized: !proxyConfig.allowUntrustedCerts
   });

@@ -60,11 +60,11 @@ export function httpRequest<T extends ReturnTypes>(request: {
     });
 
     req.on('response', (res) => {
-      const response = new HttpResponse<T>(res);
+      const response = new HttpResponse<T>(res as RequiredIncomingMessage);
       const chunks: Buffer[] = [];
       res.on('data', (chunk) => {
         if (typeof chunk === 'string') {
-          chunks.push(Buffer.from(chunk, response.encoding));
+          chunks.push(Buffer.from(chunk, response.encoding as BufferEncoding));
         } else {
           chunks.push(chunk);
         }
@@ -223,7 +223,7 @@ export class HttpResponse<T extends ReturnTypes> implements ProxyResponse<T> {
   private _rawResponse: Buffer;
   private _body: T;
 
-  public encoding: string;
+  public encoding: BufferEncoding;
   public contentEncoding: string;
   public statusCode: number;
   public statusMessage: string;

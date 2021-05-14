@@ -29,7 +29,7 @@ describe('command-create', () => {
     promiseFs.writeFileAsync.mockReset();
     promiseFs.accessAsync.mockReset();
     promiseFs.readFileAsync.mockResolvedValue(
-      new Buffer('test file contents\nTarget is $$TARGET$$')
+      Buffer.from('test file contents\nTarget is $$TARGET$$', 'utf-8')
     );
     promiseFs.accessAsync.mockRejectedValue({});
     promiseFs.writeFileAsync.mockResolvedValue({} as any);

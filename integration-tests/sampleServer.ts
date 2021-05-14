@@ -15,6 +15,7 @@ const httpsServer = new Server({
 })
 */
 
+  httpServer.validator(joi);
   httpServer.route([
     {
       method: 'GET',

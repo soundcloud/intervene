@@ -329,7 +329,7 @@ describe('createProxy', () => {
       },
       'to provide response',
       {
-        statusCode: 200,
+        statusCode: 204,
         headers: {
           'access-control-allow-origin': 'https://example.com',
           'access-control-allow-methods': 'POST',

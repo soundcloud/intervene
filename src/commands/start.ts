@@ -41,7 +41,11 @@ const handler = async function commandStartProxy(options) {
       if (!address) {
         log.error('Server did not start');
       } else {
-        log.info(`Server started on ${address.address}:${address.port}`);
+        if (typeof address !== 'string') {
+          log.info(`Server started on ${address.address}:${address.port}`);
+        } else {
+          log.info(`Server started on ${address}`);
+        }
       }
       const restartServer = function() {
         log.info('Configuration updated, reloading proxy');
