@@ -3,8 +3,8 @@ import { ProxyConfig, routeBuilder, log } from '../dist/src';
 const config: ProxyConfig = {
   target: process.env.LOCAL_TEST
     ? 'http://localhost:5959'
-    : 'https://intervene-test.bruderstein.now.sh',
-  localUrl: 'https://intervene-test.bruderstein.now.sh',
+    : 'https://intervene-test.bruderstein.vercel.app',
+  localUrl: 'https://intervene-test.bruderstein.vercel.app',
   skipEtcHosts: process.env.LOCAL_TEST ? false : true,
   routes: {
     '/proxyhealth': {
