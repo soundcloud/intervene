@@ -16,8 +16,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 14
-      - name: Build
+      - name: Install
         run: npm ci
+      - name: Build
         run: make build
       - name: Release
         env:
