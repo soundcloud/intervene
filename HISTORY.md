@@ -1,3 +1,8 @@
+3.0.0
+=====
+* Update embedded hapi version (to v20)
+* BREAKING CHANGE: Drop support for node < 12
+
 2.8.6
 =====
 * Update app name displayed when prompting for password
