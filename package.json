@@ -12,7 +12,8 @@
     "build": "tsc -p . -d",
     "test": "npm run unit-test && npm run integration-test",
     "unit-test": "jest src",
-    "integration-test": "jest integration-tests"
+    "integration-test": "jest integration-tests",
+    "semantic-release": "semantic-release"
   },
   "files": [
     "dist",
