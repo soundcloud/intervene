@@ -47,6 +47,9 @@ async function adminServer({ port }): Promise<Server> {
     port: port || 1591,
     debug: { request: ['*'] }
   });
+
+  server.validator(joi);
+
   const portProxies = {};
 
   const secret = process.env.ADMIN_SECRET || '';
