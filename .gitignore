@@ -2,3 +2,4 @@ node_modules/
 dist/
 site/
 integration-tests/configs/temp.gen.ts
+coverage/
