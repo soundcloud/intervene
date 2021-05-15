@@ -399,7 +399,7 @@ function spawnProcess(
     });
     process.on('close', (code) => {
       resolve({
-        code,
+        code: code || 0,
         stdout: stdout.toString('utf-8'),
         stderr: stderr.toString('utf-8')
       });

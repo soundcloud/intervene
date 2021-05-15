@@ -1,13 +1,3 @@
-test_node8_task:
-  container:
-    image: node:8-buster
-  test_script: make test
-
-test_node10_task:
-  container:
-    image: node:10-buster
-  test_script: make test
-
 test_node12_task:
   container:
     image: node:12-buster

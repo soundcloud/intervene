@@ -1,6 +1,5 @@
 jest.dontMock('axios');
 import axios from 'axios';
-import * as Bluebird from 'bluebird';
 import { spawn } from 'child_process';
 import { Server } from '@hapi/hapi';
 import * as http from 'http';
@@ -8,11 +7,9 @@ import * as path from 'path';
 import { createServer } from './sampleServer';
 import * as unexpected from 'unexpected';
 import * as url from 'url';
-import * as fs from 'fs';
+import { promises as fs } from 'fs';
 
 const expect = unexpected.clone();
-
-const copyFile = Bluebird.promisify<void, string, string>(fs.copyFile);
 
 /** Localhost port numbers for each config */
 const configPorts: { [config: string]: number } = {
@@ -124,20 +121,43 @@ function poll(localPort: number) {
 function startProxy(
   configName: string,
   ...args: string[]
-): Promise<() => Promise<void>> {
+): Promise<{
+  shutdownProxy: () => Promise<void>;
+  waitForUpdate: () => Promise<void>;
+}> {
   const proxyProcess = spawn(
     process.argv[0],
     ['dist/src/cli.js', 'start', getConfigPath(configName), ...args],
     { cwd: process.cwd() }
   );
-  if (process.env.DEBUG_PROXY) {
-    proxyProcess.stdout.on('data', (chunk) => {
-      console.log('[PROXY:stdout]', chunk.toString());
+  const debugProxy = !!process.env.DEBUG_PROXY;
+  let updateComplete: (() => void) | null = null;
+
+  function waitForUpdate() {
+    const wait = new Promise<void>((resolve, resject) => {
+      updateComplete = () => {
+        updateComplete = null;
+        resolve();
+      };
     });
-    proxyProcess.stderr.on('data', (chunk) => {
-      console.log('[PROXY:stderr]', chunk.toString());
-    });
+    return wait;
   }
+
+  proxyProcess.stdout.on('data', (chunk) => {
+    if (debugProxy) {
+      console.log('[PROXY:stdout]', chunk.toString());
+    }
+
+    if (updateComplete && /Server config updated/.test(chunk.toString())) {
+      updateComplete();
+    }
+  });
+  proxyProcess.stderr.on('data', (chunk) => {
+    if (debugProxy) {
+      console.log('[PROXY:stderr]', chunk.toString());
+    }
+  });
+
   baseUrl = `http://localhost:${configPorts[configName]}`;
   const shutdownProxy: () => Promise<void> = () =>
     new Promise((resolve, reject) => {
@@ -151,7 +171,7 @@ function startProxy(
   return new Promise((resolve, reject) => {
     function checkIfStarted() {
       poll(configPorts[configName])
-        .then(() => resolve(shutdownProxy))
+        .then(() => resolve({ shutdownProxy, waitForUpdate }))
         .catch(() => {
           setTimeout(checkIfStarted, 100);
         });
@@ -173,7 +193,9 @@ describe('intervene proxy', () => {
     let killProxy;
     beforeAll(() => {
       axios.defaults.baseURL = 'http://localhost:5199';
-      return startProxy('main').then((shutdown) => (killProxy = shutdown));
+      return startProxy('main').then(
+        ({ shutdownProxy }) => (killProxy = shutdownProxy)
+      );
     });
 
     afterAll(() => killProxy());
@@ -324,10 +346,13 @@ describe('intervene proxy', () => {
     it('reloads the config after an update', () => {
       const tmpPath = path.join(__dirname, 'configs', 'temp.gen.ts');
       let shutdownProxy: () => Promise<void>;
-      return copyFile(path.join(__dirname, 'configs', 'simple1.ts'), tmpPath)
+      let waitForUpdate: () => Promise<void>;
+      return fs
+        .copyFile(path.join(__dirname, 'configs', 'simple1.ts'), tmpPath)
         .then(() => startProxy('temp.gen'))
-        .then((shutdown) => {
-          shutdownProxy = shutdown;
+        .then((result) => {
+          shutdownProxy = result.shutdownProxy;
+          waitForUpdate = result.waitForUpdate;
           return expect('/foo', 'to provide response', { data: { bar: true } });
         })
         .then(() => {
@@ -336,11 +361,10 @@ describe('intervene proxy', () => {
           });
         })
         .then(() =>
-          copyFile(path.join(__dirname, 'configs', 'simple2.ts'), tmpPath)
+          fs.copyFile(path.join(__dirname, 'configs', 'simple2.ts'), tmpPath)
         )
         .then(() => {
-          // the wait time is long to (sadly) improve the reliability on shared CI infrastructure
-          return new Promise((resolve, reject) => setTimeout(resolve, 8000));
+          return waitForUpdate();
         })
         .then(() => {
           return expect('/foo', 'to provide response', {
@@ -354,9 +378,7 @@ describe('intervene proxy', () => {
           });
         })
         .then(
-          () => {
-            return shutdownProxy();
-          },
+          () => shutdownProxy(),
           (e) => {
             return shutdownProxy().then(() => {
               throw e;
@@ -368,10 +390,13 @@ describe('intervene proxy', () => {
     it('reloads the config after multiple updates', () => {
       const tmpPath = path.join(__dirname, 'configs', 'temp.gen.ts');
       let shutdownProxy: () => Promise<void>;
-      return copyFile(path.join(__dirname, 'configs', 'simple1.ts'), tmpPath)
+      let waitForUpdate: () => Promise<void>;
+      return fs
+        .copyFile(path.join(__dirname, 'configs', 'simple1.ts'), tmpPath)
         .then(() => startProxy('temp.gen'))
-        .then((shutdown) => {
-          shutdownProxy = shutdown;
+        .then((result) => {
+          shutdownProxy = result.shutdownProxy;
+          waitForUpdate = result.waitForUpdate;
           return expect('/foo', 'to provide response', {
             data: { bar: true }
           });
@@ -382,13 +407,13 @@ describe('intervene proxy', () => {
           });
         })
         .then(() => {
-          return copyFile(
+          return fs.copyFile(
             path.join(__dirname, 'configs', 'simple2.ts'),
             tmpPath
           );
         })
         .then(() => {
-          return new Promise((resolve, reject) => setTimeout(resolve, 8000));
+          return waitForUpdate();
         })
         .then(() => {
           return expect('/foo', 'to provide response', {
@@ -403,13 +428,13 @@ describe('intervene proxy', () => {
         })
         .then(() => {
           // Go back to initial config
-          return copyFile(
+          return fs.copyFile(
             path.join(__dirname, 'configs', 'simple1.ts'),
             tmpPath
           );
         })
         .then(() => {
-          return new Promise((resolve, reject) => setTimeout(resolve, 8000));
+          return waitForUpdate();
         })
         .then(() => {
           return expect('/foo', 'to provide response', {
@@ -417,9 +442,7 @@ describe('intervene proxy', () => {
           });
         })
         .then(
-          () => {
-            return shutdownProxy();
-          },
+          () => shutdownProxy(),
           (e) => {
             return shutdownProxy().then(() => {
               throw e;

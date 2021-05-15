@@ -1,5 +1,4 @@
 import * as url from 'url';
-import * as Joi from '@hapi/joi';
 import { RouteOptionsCors } from '@hapi/hapi';
 import { ProxyConfig } from './ProxyConfig';
 
