@@ -1,3 +1,8 @@
+3.0.1
+=====
+* Fix admin server startup issue
+* Fix end-to-end tests URL
+
 3.0.0
 =====
 * Update embedded hapi version (to v20)
