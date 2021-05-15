@@ -1,5 +1,4 @@
-![Build status](https://api.cirrus-ci.com/github/soundcloud/intervene.svg)
-![node.js 12](https://api.cirrus-ci.com/github/soundcloud/intervene.svg?task=test_node12) ![node.js 14](https://api.cirrus-ci.com/github/soundcloud/intervene.svg?task=test_node14)
+[![Node.js CI](https://github.com/soundcloud/intervene/actions/workflows/run-tests.yml/badge.svg)](https://github.com/soundcloud/intervene/actions/workflows/run-tests.yml)
 
 ![npm version](https://img.shields.io/npm/v/intervene)
 
