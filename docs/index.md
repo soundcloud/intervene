@@ -105,7 +105,7 @@ There's also the option to [build types](guide/typed-routes.md) around the reque
 
 ## Installation
 
-You need at least [node 8](https://nodejs.org)
+You need at least [node 12](https://nodejs.org)
 
 ```shell
 npm install -g intervene

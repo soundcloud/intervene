@@ -1,7 +1,7 @@
 
-`intervene` requires at least [node 8](https://nodejs.org), and is tested on all stable versions of node (currently 8, 10, 12 and 14).
+`intervene` requires at least [node 12](https://nodejs.org), and is tested on all stable versions of node (currently 12, 14 and 15).
 
-As node 8 is now EOL, we may drop support for node 8 at some point in the future.
+For older versions of node (8, 10), use intervene 2.x
 
 ## Install globally
 
