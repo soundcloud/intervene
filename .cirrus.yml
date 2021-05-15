@@ -1,9 +1,0 @@
-test_node12_task:
-  container:
-    image: node:12-buster
-  test_script: make test
-
-test_node14_task:
-  container:
-    image: node:14-buster
-  test_script: make test
