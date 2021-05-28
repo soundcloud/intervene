@@ -134,11 +134,21 @@ export async function createProxy(
   addRoutes(server, proxyConfig);
   server.events.on('log', (event, tags) => {
     if (tags.error) {
-      log.error(
-        `Server error: ${
-          event.error ? (event.error as any).message : 'unknown'
-        }`
-      );
+      let message = event.error ? (event.error as any).message : 'unknown';
+      if (message.includes('alert bad certificate')) {
+        message = `${message}
+        intervene attempts to trust the certificate with the operating system when supported.
+        This works for some browsers but not all (e.g. Firefox).
+
+        For Firefox, open the requested URL in your browser and add a security exception for the certificate.
+        
+        For Chrome on Linux, make sure you have certutil available - package libnss3-tools under Debian based distributions
+        (e.g. Ubuntu) and restart intervene.
+        
+        For other browsers or operating systems, refer to your browser or tool documentation about accessing URLs with untrusted certificates.
+        `;
+      }
+      log.error(`Server error: ${message}`);
     } else {
       log.error((event.error as any).message);
     }
