@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          persist-credentials: false # Needed for GITHUB_TOKEN override
+          token: ${{ secrets.CI_TOKEN }}
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
@@ -24,6 +24,6 @@ jobs:
         run: make build
       - name: Release
         env:
-          GITHUB_TOKEN: ${{ secrets.CI_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm run semantic-release
