@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/soundcloud/intervene/compare/v3.0.1...v3.1.0) (2021-05-28)
+
+
+### Features
+
+* add untrusted cert error message ([d516b57](https://github.com/soundcloud/intervene/commit/d516b57700bfa80dec3958f9a48f920a12940f13))
+
 3.0.1
 =====
 * Fix admin server startup issue
