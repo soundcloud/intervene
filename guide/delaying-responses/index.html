@@ -11,7 +11,7 @@
       
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.1.5">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-5.1.5">
     
     
       
@@ -582,7 +582,7 @@
                 <p>To slow down a response, you could return a promise from a handler that resolves only after a given delay, but it's such a common thing to do, <code>intervene</code> exports a helper makes this easy.</p>
 <p>Just <code>import { delay } from 'intervene';</code> and wrap your handler or response with <code>delay(msDelay, response)</code>, where <code>msDelay</code> is the millisecond delay you want, and <code>response</code> is either the JSON or plain text response or the handler.</p>
 <h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">🔗</a></h3>
-<div class="highlight"><pre><span></span><code><span class="k">import</span> <span class="p">{</span> <span class="nx">ProxyConfig</span><span class="p">,</span> <span class="nx">delay</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">&#39;intervene&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span> <span class="p">{</span> <span class="nx">ProxyConfig</span><span class="p">,</span> <span class="nx">delay</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;intervene&#39;</span><span class="p">;</span>
 
 <span class="kd">const</span> <span class="nx">config</span>: <span class="kt">ProxyConfig</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;https://api.myserver.com&#39;</span><span class="p">,</span>

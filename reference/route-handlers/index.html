@@ -11,7 +11,7 @@
       
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.1.5">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-5.1.5">
     
     
       
@@ -670,14 +670,14 @@
 <h2 id="examples-of-modifying-requests">Examples of modifying requests<a class="headerlink" href="#examples-of-modifying-requests" title="Permanent link">🔗</a></h2>
 <h3 id="change-the-http-method">Change the HTTP method<a class="headerlink" href="#change-the-http-method" title="Permanent link">🔗</a></h3>
 <p>Set <code>req.method</code> to whichever method you need to proxy to.</p>
-<div class="highlight"><pre><span></span><code><span class="k">import</span> <span class="p">{</span> <span class="nx">ProxyConfig</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">&#39;intervene&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span> <span class="p">{</span> <span class="nx">ProxyConfig</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;intervene&#39;</span><span class="p">;</span>
 
 <span class="kd">const</span> <span class="nx">config</span>: <span class="kt">ProxyConfig</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;https://api.mycompany.com&#39;</span><span class="p">,</span>
 
   <span class="nx">routes</span><span class="o">:</span> <span class="p">{</span>
     <span class="c1">// Change `POST /api/cats` to `PUT /api/cats` and forward to the server</span>
-    <span class="s1">&#39;POST /api/cats&#39;</span><span class="o">:</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">h</span><span class="p">,</span> <span class="nx">proxy</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="s1">&#39;POST /api/cats&#39;</span><span class="o">:</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">h</span><span class="p">,</span> <span class="nx">proxy</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
       <span class="nx">req</span><span class="p">.</span><span class="nx">method</span> <span class="o">=</span> <span class="s1">&#39;PUT&#39;</span>
       <span class="k">return</span> <span class="nx">proxy</span><span class="p">();</span>
     <span class="p">}</span>
@@ -696,13 +696,13 @@
 <li><code>pathname</code>: the path (without the query)</li>
 <li><code>query</code>: the parsed query string as an object</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">import</span> <span class="p">{</span> <span class="nx">ProxyConfig</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">&#39;intervene&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span> <span class="p">{</span> <span class="nx">ProxyConfig</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;intervene&#39;</span><span class="p">;</span>
 
 <span class="kd">const</span> <span class="nx">config</span>: <span class="kt">ProxyConfig</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">target</span><span class="o">:</span> <span class="s1">&#39;https://api.mycompany.com&#39;</span><span class="p">,</span>
 
   <span class="nx">routes</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s1">&#39;/api/cats&#39;</span><span class="o">:</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">h</span><span class="p">,</span> <span class="nx">proxy</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="s1">&#39;/api/cats&#39;</span><span class="o">:</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">h</span><span class="p">,</span> <span class="nx">proxy</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
       <span class="c1">// Change `GET /api/cats` to `GET /api/v2/cats`</span>
       <span class="nx">req</span><span class="p">.</span><span class="nx">url</span><span class="p">.</span><span class="nx">pathname</span> <span class="o">=</span> <span class="s1">&#39;/api/v2/cats&#39;</span><span class="p">;</span>
 
