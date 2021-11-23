@@ -23,7 +23,8 @@ const handler = async function commandAdminServer(options) {
     process.env.ADMIN_SECRET = options.s;
   }
   const server = await adminServer({ port: options.port });
-  server.start();
+  await server.start();
+  log.info(`Admin server listening on ${server.info.address}:${server.info.port}`)
 };
 
 export { command, describe, builder, handler };

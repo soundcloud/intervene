@@ -168,6 +168,8 @@ async function startAdminServer(): Promise<{
         return axios.get(`http://localhost:${port}/${adminSecret}/-/health`);
       }
 
+      let lastError: Error | null = null
+
       async function poll(pollCount) {
         if (!shouldPoll) {
           return;
@@ -175,7 +177,7 @@ async function startAdminServer(): Promise<{
 
         if (pollCount > 60) {
           // 30 second(ish) timeout. Remember the user has to type their password in in this time
-          throw new Error('Timeout waiting for admin server');
+          throw new Error(`Timeout waiting for admin server, last error was ${lastError ? lastError : 'unknown'}`);
         }
         try {
           const result = await makeCall();
@@ -183,6 +185,7 @@ async function startAdminServer(): Promise<{
           registerCleanup(shutdown, { order: 1000 });
           return resolve({ adminSecret, port });
         } catch (e) {
+          lastError = e;
           setTimeout(() => poll(pollCount + 1), getPollDelay(pollCount));
         }
       }
