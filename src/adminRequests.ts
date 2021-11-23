@@ -1,5 +1,5 @@
 import { RouteOptionsCors } from '@hapi/hapi';
-import axios from 'axios';
+import Axios from 'axios';
 import * as Bluebird from 'bluebird';
 import * as crypto from 'crypto';
 import * as EventSource from 'eventsource';
@@ -9,6 +9,17 @@ import * as sudoPrompt from 'sudo-prompt';
 import { HostAdditionResponse } from './adminServer';
 import { registerCleanup, removeCleanup } from './cleanupQueue';
 import getPort from 'get-port';
+import * as http from 'http';
+
+// Force using IPV4 for outgoing connections
+// because the admin server only listens on IPV4 but
+// outgoing connections to localhost seem to default to IPV6
+// since Node.js 17 (at least on macOS)
+const agent = new http.Agent(
+  // `family` is missing from AgentOptions type
+  { family: 4 } as any
+);
+const axios = Axios.create({ httpAgent: agent });
 
 const sudoExec = Bluebird.promisify<void, string, { name?: string }>(
   sudoPrompt.exec,
