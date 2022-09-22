@@ -1,3 +1,10 @@
+## [3.1.1](https://github.com/soundcloud/intervene/compare/v3.1.0...v3.1.1) (2022-09-22)
+
+
+### Bug Fixes
+
+* dependapot created several PRs which have been merged. ([f18460c](https://github.com/soundcloud/intervene/commit/f18460cda7dac4f616fbfed66531d2da33c73928))
+
 # 3.2.0
 
 - fix critical vulnerabilties
