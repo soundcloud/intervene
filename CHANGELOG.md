@@ -1,3 +1,10 @@
+## [3.1.5](https://github.com/soundcloud/intervene/compare/v3.1.4...v3.1.5) (2023-02-17)
+
+
+### Bug Fixes
+
+* Downgrade @types/bluebird to v3.5.34 ([899f03b](https://github.com/soundcloud/intervene/commit/899f03bb379a52bdd43b50ff11727ce60f10001f)), closes [#52](https://github.com/soundcloud/intervene/issues/52)
+
 ## [3.1.4](https://github.com/soundcloud/intervene/compare/v3.1.3...v3.1.4) (2023-02-17)
 
 
