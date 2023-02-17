@@ -1,3 +1,10 @@
+## [3.1.2](https://github.com/soundcloud/intervene/compare/v3.1.1...v3.1.2) (2023-02-17)
+
+
+### Bug Fixes
+
+* Run semantic-release/npm before semantic-release/git ([65f23c1](https://github.com/soundcloud/intervene/commit/65f23c10f082993afab4bbb3be5f6dec6d502585))
+
 ## [3.1.1](https://github.com/soundcloud/intervene/compare/v3.1.0...v3.1.1) (2022-09-22)
 
 
