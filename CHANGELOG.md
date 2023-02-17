@@ -1,3 +1,10 @@
+## [3.1.4](https://github.com/soundcloud/intervene/compare/v3.1.3...v3.1.4) (2023-02-17)
+
+
+### Bug Fixes
+
+* Use semantic-release plugin defaults so that fix from [#51](https://github.com/soundcloud/intervene/issues/51) works ([8bd5b77](https://github.com/soundcloud/intervene/commit/8bd5b77369cb8b4003c1529eb6a5e790eb9fbec3))
+
 ## [3.1.3](https://github.com/soundcloud/intervene/compare/v3.1.2...v3.1.3) (2023-02-17)
 
 
