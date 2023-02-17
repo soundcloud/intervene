@@ -1,9 +1,4 @@
-[![Node.js CI](https://github.com/soundcloud/intervene/actions/workflows/run-tests.yml/badge.svg)](https://github.com/soundcloud/intervene/actions/workflows/run-tests.yml)
-
-![npm version](https://img.shields.io/npm/v/intervene)
-
-
-# Intervene
+# Intervene [![npm version](https://img.shields.io/npm/v/intervene)](https://www.npmjs.com/package/intervene) [![build status](https://img.shields.io/github/actions/workflow/status/soundcloud/intervene/run-tests.yml)](https://github.com/soundcloud/intervene/actions/workflows/run-tests.yml)
 
 _Hassle free HTTP(S) API proxying for development_
 
