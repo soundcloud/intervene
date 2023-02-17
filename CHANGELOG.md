@@ -1,3 +1,11 @@
+## [3.1.3](https://github.com/soundcloud/intervene/compare/v3.1.2...v3.1.3) (2023-02-17)
+
+
+### Bug Fixes
+
+* Pin @types/bluebird to the last version that worked with TS v3 ([c4e6f89](https://github.com/soundcloud/intervene/commit/c4e6f890cc986ed5e0af4ba8028c632b7579adf4))
+* Use tilde range for typescript ([d7aa290](https://github.com/soundcloud/intervene/commit/d7aa29049d43ce5e9eeccc97026c61a37a6ec07a))
+
 ## [3.1.2](https://github.com/soundcloud/intervene/compare/v3.1.1...v3.1.2) (2023-02-17)
 
 
