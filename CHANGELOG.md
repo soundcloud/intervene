@@ -1,3 +1,10 @@
+## [3.1.6](https://github.com/soundcloud/intervene/compare/v3.1.5...v3.1.6) (2023-02-17)
+
+
+### Bug Fixes
+
+* Pin @types/node to a version compatible with TS v3 ([e45df88](https://github.com/soundcloud/intervene/commit/e45df8869a83f2891aed11e4685b61907ce0ff54))
+
 ## [3.1.5](https://github.com/soundcloud/intervene/compare/v3.1.4...v3.1.5) (2023-02-17)
 
 
