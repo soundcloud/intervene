@@ -11,7 +11,7 @@
       
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-5.1.5">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-5.1.5">
     
     
       
@@ -584,78 +584,78 @@
 <h3 id="enter-routebuilder">Enter <code>routeBuilder</code><a class="headerlink" href="#enter-routebuilder" title="Permanent link">🔗</a></h3>
 <p>You can import <code>routeBuilder</code> in the same way from the project. It is a function which takes up to 3 type parameters, <code>RequestT</code>, <code>ResponseT</code> and <code>ProxyResponseT</code>, and a single argument of either the response or the response handler function (so everything you can put against a route).</p>
 <p>Examples:</p>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ProxyConfig</span><span class="p">,</span><span class="w"> </span><span class="nx">routeBuilder</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;intervene&#39;</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ProxyConfig</span><span class="p">,</span><span class="w"> </span><span class="nx">routeBuilder</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;intervene&#39;</span><span class="p">;</span>
 
-<span class="kd">interface</span><span class="w"> </span><span class="nx">NewTweet</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="nx">source</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;web&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;android&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;ios&#39;</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">NewTweet</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">source</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;web&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;android&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;ios&#39;</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span class="c1">// A CreatedTweet is the same as a NewTweet, but with an id</span><span class="w"></span>
-<span class="kd">interface</span><span class="w"> </span><span class="nx">CreatedTweet</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">NewTweet</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="c1">// A CreatedTweet is the same as a NewTweet, but with an id</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">CreatedTweet</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">NewTweet</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span class="c1">// A BackendTweet is the same as a CreatedTweet, but with uid as a number</span><span class="w"></span>
-<span class="c1">// (Scenario here is to change a frontend to use `id` as a string instead of `uid` as a number)</span><span class="w"></span>
-<span class="kd">interface</span><span class="w"> </span><span class="nx">BackendTweet</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">NewTweet</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="nx">uid</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="c1">// A BackendTweet is the same as a CreatedTweet, but with uid as a number</span>
+<span class="c1">// (Scenario here is to change a frontend to use `id` as a string instead of `uid` as a number)</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nx">BackendTweet</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">NewTweet</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">uid</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span class="kd">const</span><span class="w"> </span><span class="nx">config</span><span class="o">:</span><span class="w"> </span><span class="kt">ProxyConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="nx">target</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;https://api.mycompany.com&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nx">routes</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// This describes the request POST body format as a `NewPlaylist` type.</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// Note that this has no effect as we&#39;re always returning a static response</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// However, it serves as documentation for what the request body should look like</span><span class="w"></span>
-<span class="w">    </span><span class="s1">&#39;POST /tweet&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">routeBuilder</span><span class="o">&lt;</span><span class="nx">NewTweet</span><span class="o">&gt;</span><span class="p">({</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;tweets:9999999999999&#39;</span><span class="w"> </span><span class="p">}),</span><span class="w"></span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">config</span><span class="o">:</span><span class="w"> </span><span class="kt">ProxyConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">target</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;https://api.mycompany.com&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">routes</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// This describes the request POST body format as a `NewPlaylist` type.</span>
+<span class="w">    </span><span class="c1">// Note that this has no effect as we&#39;re always returning a static response</span>
+<span class="w">    </span><span class="c1">// However, it serves as documentation for what the request body should look like</span>
+<span class="w">    </span><span class="s1">&#39;POST /tweet&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">routeBuilder</span><span class="o">&lt;</span><span class="nx">NewTweet</span><span class="o">&gt;</span><span class="p">({</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;tweets:9999999999999&#39;</span><span class="w"> </span><span class="p">}),</span>
 
-<span class="w">    </span><span class="s1">&#39;POST /tweet2&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">routeBuilder</span><span class="o">&lt;</span><span class="nx">NewTweet</span><span class="o">&gt;</span><span class="p">((</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">h</span><span class="p">,</span><span class="w"> </span><span class="nx">proxy</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="c1">// Here, because this is a handler method, we have typed access to the request properties</span><span class="w"></span>
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;tweets:9999999999999&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="kt">req.payload.text</span><span class="p">,</span><span class="w">  </span><span class="c1">// &lt;-- all the autocomplete goodness here :)</span><span class="w"></span>
-<span class="w">        </span><span class="nx">source</span><span class="o">:</span><span class="w"> </span><span class="kt">req.payload.source</span><span class="w"></span>
-<span class="w">      </span><span class="p">};</span><span class="w"></span>
-<span class="w">    </span><span class="p">}),</span><span class="w"></span>
+<span class="w">    </span><span class="s1">&#39;POST /tweet2&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">routeBuilder</span><span class="o">&lt;</span><span class="nx">NewTweet</span><span class="o">&gt;</span><span class="p">((</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">h</span><span class="p">,</span><span class="w"> </span><span class="nx">proxy</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Here, because this is a handler method, we have typed access to the request properties</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;tweets:9999999999999&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="kt">req.payload.text</span><span class="p">,</span><span class="w">  </span><span class="c1">// &lt;-- all the autocomplete goodness here :)</span>
+<span class="w">        </span><span class="nx">source</span><span class="o">:</span><span class="w"> </span><span class="kt">req.payload.source</span>
+<span class="w">      </span><span class="p">};</span>
+<span class="w">    </span><span class="p">}),</span>
 
-<span class="w">    </span><span class="c1">// Here we&#39;re defining a response type too. We&#39;ll get errors in the console when we save the config if the response</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// deviates from what is defined</span><span class="w"></span>
-<span class="w">    </span><span class="s1">&#39;POST /tweet3&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">routeBuilder</span><span class="o">&lt;</span><span class="nx">NewTweet</span><span class="p">,</span><span class="w"> </span><span class="nx">CreatedTweet</span><span class="o">&gt;</span><span class="p">((</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">h</span><span class="p">,</span><span class="w"> </span><span class="nx">proxy</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;tweets:999999999999999&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="kt">req.payload.text</span><span class="p">,</span><span class="w">  </span><span class="c1">// &lt;-- all the autocomplete goodness here :)</span><span class="w"></span>
-<span class="w">        </span><span class="nx">source</span><span class="o">:</span><span class="w"> </span><span class="kt">req.payload.source</span><span class="w"></span>
-<span class="w">      </span><span class="p">};</span><span class="w"></span>
-<span class="w">    </span><span class="p">}),</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Here we&#39;re defining a response type too. We&#39;ll get errors in the console when we save the config if the response</span>
+<span class="w">    </span><span class="c1">// deviates from what is defined</span>
+<span class="w">    </span><span class="s1">&#39;POST /tweet3&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">routeBuilder</span><span class="o">&lt;</span><span class="nx">NewTweet</span><span class="p">,</span><span class="w"> </span><span class="nx">CreatedTweet</span><span class="o">&gt;</span><span class="p">((</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">h</span><span class="p">,</span><span class="w"> </span><span class="nx">proxy</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;tweets:999999999999999&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="kt">req.payload.text</span><span class="p">,</span><span class="w">  </span><span class="c1">// &lt;-- all the autocomplete goodness here :)</span>
+<span class="w">        </span><span class="nx">source</span><span class="o">:</span><span class="w"> </span><span class="kt">req.payload.source</span>
+<span class="w">      </span><span class="p">};</span>
+<span class="w">    </span><span class="p">}),</span>
 
-<span class="w">    </span><span class="c1">// Here we&#39;re just defining the response type. We&#39;ll get typescript errors if the</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// response deviates from the type. This can be useful if you&#39;re using the types to</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// form the discussion and documentation around the data exchange formats, and you</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// don&#39;t want to be returning something that isn&#39;t valid.</span><span class="w"></span>
-<span class="w">    </span><span class="s1">&#39;GET /tweets/999999&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">routeBuilder</span><span class="o">&lt;</span><span class="nx">never</span><span class="p">,</span><span class="w"> </span><span class="nx">CreatedTweet</span><span class="o">&gt;</span><span class="p">({</span><span class="w"></span>
-<span class="w">      </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;tweets:999999&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nx">source</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;web&#39;</span><span class="w"></span>
-<span class="w">    </span><span class="p">})</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Here we&#39;re just defining the response type. We&#39;ll get typescript errors if the</span>
+<span class="w">    </span><span class="c1">// response deviates from the type. This can be useful if you&#39;re using the types to</span>
+<span class="w">    </span><span class="c1">// form the discussion and documentation around the data exchange formats, and you</span>
+<span class="w">    </span><span class="c1">// don&#39;t want to be returning something that isn&#39;t valid.</span>
+<span class="w">    </span><span class="s1">&#39;GET /tweets/999999&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">routeBuilder</span><span class="o">&lt;</span><span class="nx">never</span><span class="p">,</span><span class="w"> </span><span class="nx">CreatedTweet</span><span class="o">&gt;</span><span class="p">({</span>
+<span class="w">      </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;tweets:999999&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;foo&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">source</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;web&#39;</span>
+<span class="w">    </span><span class="p">})</span>
 
 
-<span class="w">    </span><span class="c1">// Here we&#39;re calling the real backend with the `proxy()` function, and mapping that type</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// This is useful if you&#39;re altering the backend response in some way, but want typed access</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// to both. The default type for the proxy response is the same as the ResponseT, so you only</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// need this if you are changing the shape of the data as it passes through intervene</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Here we&#39;re calling the real backend with the `proxy()` function, and mapping that type</span>
+<span class="w">    </span><span class="c1">// This is useful if you&#39;re altering the backend response in some way, but want typed access</span>
+<span class="w">    </span><span class="c1">// to both. The default type for the proxy response is the same as the ResponseT, so you only</span>
+<span class="w">    </span><span class="c1">// need this if you are changing the shape of the data as it passes through intervene</span>
 
-<span class="w">    </span><span class="s1">&#39;GET /tweets/777777&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">routeBuilder</span><span class="o">&lt;</span><span class="nx">never</span><span class="p">,</span><span class="w"> </span><span class="nx">CreatedTweet</span><span class="p">,</span><span class="w"> </span><span class="nx">BackendTweet</span><span class="o">&gt;</span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">h</span><span class="p">,</span><span class="w"> </span><span class="nx">proxy</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">proxy</span><span class="p">();</span><span class="w"></span>
-<span class="w">      </span><span class="c1">// response is of type BackendPlaylist</span><span class="w"></span>
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;tweets:&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">uid</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">10</span><span class="p">),</span><span class="w"></span>
-<span class="w">        </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="kt">response.body.text</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="nx">source</span><span class="o">:</span><span class="w"> </span><span class="kt">response.body.source</span><span class="w"></span>
-<span class="w">      </span><span class="p">};</span><span class="w"></span>
-<span class="w">    </span><span class="p">})</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="s1">&#39;GET /tweets/777777&#39;</span><span class="o">:</span><span class="w"> </span><span class="nx">routeBuilder</span><span class="o">&lt;</span><span class="nx">never</span><span class="p">,</span><span class="w"> </span><span class="nx">CreatedTweet</span><span class="p">,</span><span class="w"> </span><span class="nx">BackendTweet</span><span class="o">&gt;</span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="w"> </span><span class="nx">h</span><span class="p">,</span><span class="w"> </span><span class="nx">proxy</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">proxy</span><span class="p">();</span>
+<span class="w">      </span><span class="c1">// response is of type BackendPlaylist</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;tweets:&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">uid</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">10</span><span class="p">),</span>
+<span class="w">        </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="kt">response.body.text</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">source</span><span class="o">:</span><span class="w"> </span><span class="kt">response.body.source</span>
+<span class="w">      </span><span class="p">};</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
                 
               
