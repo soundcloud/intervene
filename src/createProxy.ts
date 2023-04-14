@@ -97,7 +97,7 @@ export async function createProxy(
               "Error starting privileged port listener, the port is in use. Check if there's another admin server still running from a previous process"
             );
             break;
-          case 'EACCESS':
+          case 'EACCES':
             log.error(
               "Error starting privileged port listener - the admin server doesn't have rights to listen on the low numbered port. This is strange, and is probably a bug somewhere."
             );
