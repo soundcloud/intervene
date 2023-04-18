@@ -1,3 +1,10 @@
+## [3.1.7](https://github.com/soundcloud/intervene/compare/v3.1.6...v3.1.7) (2023-04-18)
+
+
+### Bug Fixes
+
+* correct the error code from EACCESS to EACCES ([84565f5](https://github.com/soundcloud/intervene/commit/84565f548a2cd5a9e330e6f20cbdb05f180747ce))
+
 ## [3.1.6](https://github.com/soundcloud/intervene/compare/v3.1.5...v3.1.6) (2023-02-17)
 
 
