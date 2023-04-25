@@ -55,7 +55,7 @@
     "magicpen-media": "^1.5.1",
     "mocha": "^7.1.2",
     "prettier": "^1.14.3",
-    "semantic-release": "^17.4.3",
+    "semantic-release": "^21.0.1",
     "sinon": "^6.3.4",
     "unexpected": "^10.17.2",
     "unexpected-sinon": "^10.10.1"
