@@ -1,5 +1,5 @@
 import { RouteOptionsCors } from '@hapi/hapi';
-import axios from 'axios';
+import Axios from 'axios';
 import * as Bluebird from 'bluebird';
 import * as crypto from 'crypto';
 import * as EventSource from 'eventsource';
@@ -9,6 +9,17 @@ import * as sudoPrompt from 'sudo-prompt';
 import { HostAdditionResponse } from './adminServer';
 import { registerCleanup, removeCleanup } from './cleanupQueue';
 import getPort from 'get-port';
+import * as http from 'http';
+
+// Force using IPV4 for outgoing connections
+// because the admin server only listens on IPV4 but
+// outgoing connections to localhost seem to default to IPV6
+// since Node.js 17 (at least on macOS)
+const agent = new http.Agent(
+  // `family` is missing from AgentOptions type
+  { family: 4 } as any
+);
+const axios = Axios.create({ httpAgent: agent });
 
 const sudoExec = Bluebird.promisify<void, string, { name?: string }>(
   sudoPrompt.exec,
@@ -157,6 +168,8 @@ async function startAdminServer(): Promise<{
         return axios.get(`http://localhost:${port}/${adminSecret}/-/health`);
       }
 
+      let lastError: Error | null = null
+
       async function poll(pollCount) {
         if (!shouldPoll) {
           return;
@@ -164,7 +177,7 @@ async function startAdminServer(): Promise<{
 
         if (pollCount > 60) {
           // 30 second(ish) timeout. Remember the user has to type their password in in this time
-          throw new Error('Timeout waiting for admin server');
+          throw new Error(`Timeout waiting for admin server, last error was ${lastError ? lastError : 'unknown'}`);
         }
         try {
           const result = await makeCall();
@@ -172,6 +185,7 @@ async function startAdminServer(): Promise<{
           registerCleanup(shutdown, { order: 1000 });
           return resolve({ adminSecret, port });
         } catch (e) {
+          lastError = e;
           setTimeout(() => poll(pollCount + 1), getPollDelay(pollCount));
         }
       }
