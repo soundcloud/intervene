@@ -1,4 +1,4 @@
-const REAL_EXTERNAL_HOST = 'https://intervene-test.bruderstein.now.sh';
+const REAL_EXTERNAL_HOST = 'https://intervene-test.bruderstein.vercel.app';
 
 const defaultOptions = {
   redirect: 'follow',
