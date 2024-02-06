@@ -1,4 +1,3 @@
-jest.mock('../../promiseFs');
 jest.mock('../../configLoader', () => {
   return {
     loadConfig: jest.fn().mockResolvedValue({
@@ -34,7 +33,6 @@ const expect = unexpected.clone();
 
 describe('command-create', () => {
   beforeEach(() => {
-    promiseFs.readFileAsync.mockReset();
     createProxy().then((v) => {
       v.start.mockReset();
       v.stop.mockReset();

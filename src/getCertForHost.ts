@@ -17,15 +17,16 @@ export interface CertificateOptions {
 const HOUR_IN_MS = 60 * 60 * 1000;
 const DAY_IN_MS = 24 * HOUR_IN_MS;
 
-const certPromises: { [key: string]: Promise<tls.SecureContextOptions> } = {};
+const certPromises: { [key: string]: Promise<tls.SecureContextOptions> | undefined } = {};
 
 export async function getCertForHost(
   certPath: string,
   serverName: string,
   options: CertificateOptions
 ): Promise<tls.SecureContextOptions> {
-  if (certPromises[serverName]) {
-    return certPromises[serverName];
+  const existingPromise = certPromises[serverName];
+  if (existingPromise) {
+    return existingPromise;
   }
   const certPromise = loadOrCreateCertForHost(certPath, serverName, options);
   certPromises[serverName] = certPromise;

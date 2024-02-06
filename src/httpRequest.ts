@@ -1,6 +1,6 @@
 import * as http from 'http';
 import * as https from 'https';
-import * as url from 'url';
+import { URL } from 'url';
 import { ProxyResponse, ReturnTypes } from './ProxyConfig';
 import { createGunzip, createInflate } from 'zlib';
 import brotliDecompress from './brotli-decode';
@@ -9,6 +9,7 @@ import * as iconv from 'iconv-lite';
 
 interface HttpRequester {
   request(
+    url: URL,
     options: https.RequestOptions,
     callback?: (res: http.IncomingMessage) => void
   ): http.ClientRequest;
@@ -33,7 +34,7 @@ export function httpRequest<T extends ReturnTypes>(request: {
   rejectUnauthorized?: boolean;
 }): Promise<HttpResponse<T>> {
   return new Promise((resolve, reject) => {
-    const requestUrl = url.parse(request.url, false);
+    const requestUrl = new URL(request.url);
     const isHttps = requestUrl.protocol === 'https:';
 
     let requestOptions = {
@@ -45,10 +46,10 @@ export function httpRequest<T extends ReturnTypes>(request: {
         request.rejectUnauthorized !== undefined && isHttps
           ? request.rejectUnauthorized
           : true,
-      ...requestUrl
     };
 
     const req = ((isHttps ? https : http) as HttpRequester).request(
+      requestUrl,
       requestOptions
     );
 

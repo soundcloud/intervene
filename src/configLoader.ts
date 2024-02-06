@@ -3,8 +3,7 @@ import { log } from './logger';
 import { parseTypescript } from './parseTypescript';
 import * as path from 'path';
 import { ProxyConfig } from './ProxyConfig';
-import promiseFs from './promiseFs';
-import * as ts from 'typescript';
+import { promises as fs } from 'fs';
 import * as vm from 'vm';
 
 const m = require('module');
@@ -19,7 +18,7 @@ export async function loadConfig(
       resolvedFileName = 'config.ts';
       content = (await axios({ method: 'GET', url: proxyConfigFile })).data;
     } else {
-      content = (await promiseFs.readFileAsync(proxyConfigFile)).toString(
+      content = (await fs.readFile(proxyConfigFile)).toString(
         'utf-8'
       );
     }
@@ -114,9 +113,9 @@ function makeRequireFunction(mod) {
 export function replaceImport(realPath, content) {
   let lastReplacedImport = '';
   content = content.replace(
-    /import\s+\{\s*(((ProxyConfig|WrappedRequest|WrappedResponse|RouteHandler|routeBuilder|HandlerResult|ReturnTypes|log|ProxyResponse|httpRequest|delay)\s*,?[\s]*)+)\s*\}\s+from\s+['"][^'"]+['"]/m,
-    function(match, importedItems) {
-      if (importedItems.indexOf('ProxyConfig') !== -1) {
+    /import\s+(?:type\s*)?\{\s*((?:(?:ProxyConfig|WrappedRequest|WrappedResponse|RouteHandler|routeBuilder|HandlerResult|ReturnTypes|log|ProxyResponse|httpRequest|delay)\s*,?[\s]*)+)\s*\}\s+from\s+['"]([^'"]+)['"]/mg,
+    function(match, importedItems, importPath) {
+      if (importPath.indexOf('intervene') !== -1) {
         lastReplacedImport = `import { ${importedItems.trim()} } from '${realPath}'`;
         return lastReplacedImport;
       }
