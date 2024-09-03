@@ -1,3 +1,20 @@
+# [4.0.0](https://github.com/soundcloud/intervene/compare/v3.1.7...v4.0.0) (2024-09-03)
+
+
+### Bug Fixes
+
+* make import replacement support `import type` ([368602f](https://github.com/soundcloud/intervene/commit/368602ff2e738f8e3e560d99ea3230f6e95e8354))
+
+
+### chore
+
+* **deps:** update Hapi, @types/node  & typescript ([9f12331](https://github.com/soundcloud/intervene/commit/9f1233156f720ffe69906c6c36da0b964bade46a))
+
+
+### BREAKING CHANGES
+
+* **deps:** drop support for node 14.
+
 ## [3.1.7](https://github.com/soundcloud/intervene/compare/v3.1.6...v3.1.7) (2023-04-18)
 
 
