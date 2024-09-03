@@ -63,7 +63,7 @@ const handler = async function commandStartProxy(options) {
             log.info('Server config updated');
           });
       };
-      let reloadTimeout: NodeJS.Timer | null = null;
+      let reloadTimeout: NodeJS.Timeout | null = null;
       const configFileUpdate = function() {
         if (reloadTimeout) {
           clearTimeout(reloadTimeout);
@@ -77,7 +77,7 @@ const handler = async function commandStartProxy(options) {
         const configDir = path.dirname(configFullPath);
         const configFilenameOnly = path.basename(configFullPath);
         fs.watch(configDir, { persistent: false }, (event, filename) => {
-          if (filename.toLowerCase() === configFilenameOnly.toLowerCase()) {
+          if (filename && filename.toLowerCase() === configFilenameOnly.toLowerCase()) {
             configFileUpdate();
           }
         });

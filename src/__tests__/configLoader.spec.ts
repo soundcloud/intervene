@@ -26,7 +26,7 @@ describe('configLoader', () => {
     ) {
       const result = replaceImport(
         'intervene-test',
-        `import ${subject} from '../foo/bar'`
+        `import ${subject} from '../intervene/bar'`
       );
       expect(result, 'to equal', `import ${replacement} from 'intervene-test'`);
     });
@@ -55,7 +55,19 @@ describe('configLoader', () => {
       );
     });
 
-    it('doesn`t replace an import without importing ProxyConfig', () => {
+    it('replaces multiple imports in separate statements', () => {
+      expect(
+        replaceImport('intervene-test', 
+        `import { ProxyConfig, log } from '/whatever/intervene';
+        import foo from 'bar';
+        import { routeBuilder } from 'whatever/intervene/foo';`),
+      'to equal',
+        `import { ProxyConfig, log } from 'intervene-test';
+        import foo from 'bar';
+        import { routeBuilder } from 'intervene-test';`);
+    })
+
+    it('doesn`t replace an import without importing from something with intervene', () => {
       expect(
         replaceImport(
           'intervene-test',
@@ -142,7 +154,7 @@ describe('configLoader', () => {
 
   it('patches the path for importing the ProxyConfig', async () => {
     axios.mockResolvedValue({
-      data: `import { ProxyConfig } from '/foo/bar/this/doesnt/matter/ProxyConfig';
+      data: `import { ProxyConfig } from '/foo/bar/this/doesnt/matter/intervene/ProxyConfig';
       import * as path from 'path';
       const config: ProxyConfig = {
         target: 'http://foo.bar.test',

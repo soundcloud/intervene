@@ -10,7 +10,6 @@ export function parseTypescript(configFileName: string, contents: string) {
   const resolvedConfigPath = path.resolve(configFileName);
 
   const typePaths = {
-    hapi__hapi: '',
     node: ''
   };
 
@@ -20,7 +19,7 @@ export function parseTypescript(configFileName: string, contents: string) {
   while (
     directory &&
     directory !== '/' &&
-    (!typePaths.hapi__hapi || !typePaths.node)
+    !typePaths.node
   ) {
     directory = findDirectoryWithNodeModules(directory);
     try {
@@ -31,9 +30,6 @@ export function parseTypescript(configFileName: string, contents: string) {
       );
       const typeModules = fs.readdirSync(typeModulesDirectory);
 
-      if (!typePaths.hapi__hapi && typeModules.includes('hapi__hapi')) {
-        typePaths.hapi__hapi = typeModulesDirectory;
-      }
       if (!typePaths.node && typeModules.includes('node')) {
         typePaths.node = typeModulesDirectory;
       }
@@ -50,9 +46,9 @@ export function parseTypescript(configFileName: string, contents: string) {
     }
   }
 
-  if (!typePaths.hapi__hapi || !typePaths.node) {
+  if (!typePaths.node) {
     throw new Error(
-      'Could not find a @types module for either node or hapi__hapi'
+      'Could not find a @types module for node'
     );
   }
 
