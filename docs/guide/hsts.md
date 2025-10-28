@@ -17,7 +17,6 @@ Once the browser sees the real server again though, it will add the site to the 
 
 ### Preload list
 
-If your site is on the preload list, you can try disabling `network.stricttransportsecurity.preloadlist` from `about:config`, restarting your browser and maybe following the above procedure, but we've not had much luck with this so far. If you have tips or workarounds for this please submit them as issues or PRs to the [GitHub project](https://github.com/soundcloud/intervene)
 
 ## Chrome
 

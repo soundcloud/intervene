@@ -1,6 +1,5 @@
 site_name: intervene
 repo_name: intervene
-repo_url: https://github.com/soundcloud/intervene
 
 dev_addr: 0.0.0.0:8000
 
