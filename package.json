@@ -12,7 +12,7 @@
     "url": "git+https://github.com/soundcloud/intervene.git"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "publishConfig": {
     "provenance": true
