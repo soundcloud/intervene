@@ -7,6 +7,17 @@
     "intervene": "dist/src/cli.js"
   },
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soundcloud/intervene.git"
+  },
+  "engines": {
+    "node": ">=20.17.0",
+    "npm": ">=11"
+  },
+  "publishConfig": {
+    "provenance": true
+  },
   "scripts": {
     "prepare": "npm run build",
     "build": "tsc -p . -d && cp src/brotli-decode.* dist/src",
@@ -46,8 +57,9 @@
     "yargs": "^12.0.5"
   },
   "devDependencies": {
-    "@semantic-release/changelog": "^5.0.1",
-    "@semantic-release/git": "^9.0.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/npm": "^13.1.5",
     "@types/jest": "^29.5.10",
     "http-server": "^0.12.3",
     "jest": "^29.7.0",
@@ -55,7 +67,7 @@
     "magicpen-media": "^1.5.1",
     "mocha": "^7.1.2",
     "prettier": "^1.14.3",
-    "semantic-release": "^17.4.3",
+    "semantic-release": "^25.0.0",
     "sinon": "^6.3.4",
     "unexpected": "^10.17.2",
     "unexpected-sinon": "^10.10.1"

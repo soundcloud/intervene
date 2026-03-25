@@ -2,26 +2,27 @@ name: Node.js CI
 on:
   workflow_dispatch:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
-        node-version: [16.x, 18.x, 20.x]
+        node-version: [20, 22, 24]
 
     runs-on: ${{ matrix.os }}
     env:
       DEBUG_PROXY: 1
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+      - run: npm install -g npm@11
       - run: npm ci
       - run: make test

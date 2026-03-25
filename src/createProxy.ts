@@ -11,6 +11,7 @@ import { preloadCertForHost } from './getCertForHost';
 import getPort from 'get-port';
 import { getProxyResponse } from './getProxyResponse';
 import { Server, Request, ResponseToolkit } from '@hapi/hapi';
+import type { RouteDefMethods } from '@hapi/hapi';
 import * as http from 'http';
 import { createTLSListener } from './listener';
 import { log } from './logger';
@@ -333,11 +334,13 @@ function createWrappedRequest(
   });
 }
 
-function parseRoutePath(routePath: string): { method: string; path: string } {
+function parseRoutePath(
+  routePath: string
+): { method: RouteDefMethods | '*'; path: string } {
   let [method, path] = routePath.split(' ');
   if (!path) {
     path = method;
     method = 'GET';
   }
-  return { method, path };
+  return { method: method as RouteDefMethods | '*', path };
 }
