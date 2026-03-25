@@ -1,6 +1,6 @@
 {
   "name": "intervene",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "bin": {

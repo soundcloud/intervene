@@ -1,3 +1,25 @@
+# [5.0.0](https://github.com/soundcloud/intervene/compare/v4.0.0...v5.0.0) (2026-03-25)
+
+
+### Bug Fixes
+
+* **ci:** drop Node 20 from test matrix, require Node >=22 ([f76b73f](https://github.com/soundcloud/intervene/commit/f76b73f15258b4de257a0737610312580bc67121))
+* **ci:** regenerate lockfile and ensure consistent npm version ([df69a56](https://github.com/soundcloud/intervene/commit/df69a5647b54c90162d67c1d1461a3ec420b9afd))
+* type-safe route method in parseRoutePath ([8a2e134](https://github.com/soundcloud/intervene/commit/8a2e1343325cf9ab4ab97c92ae737377b889960a))
+
+
+### Features
+
+* **ci:** pin npm 11 across CI, restore Node 20 support ([c4f92d9](https://github.com/soundcloud/intervene/commit/c4f92d9193b1b107e0315b3a851c34338b6c54a1))
+
+
+### BREAKING CHANGES
+
+* **ci:** require Node >=20.17.0 and npm >=11. Drops
+support for Node 12, 14, 15, 16, 18 and npm <11.
+
+Made-with: Cursor
+
 # [4.0.0](https://github.com/soundcloud/intervene/compare/v3.1.7...v4.0.0) (2024-09-03)
 
 
