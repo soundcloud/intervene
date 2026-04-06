@@ -1,3 +1,13 @@
+## [5.0.1](https://github.com/soundcloud/intervene/compare/v5.0.0...v5.0.1) (2026-04-06)
+
+
+### Bug Fixes
+
+* **ci:** add issues:write permission for semantic-release ([26d1754](https://github.com/soundcloud/intervene/commit/26d175435b046c0b8b83777a93d08a00ab6f7f2a))
+* **ci:** remove persist-credentials:false for GITHUB_TOKEN auth ([e6ff774](https://github.com/soundcloud/intervene/commit/e6ff77407812056c88effa7da5d47adbaf546028))
+* **ci:** use intervene-ci PAT for semantic-release ([bd751ba](https://github.com/soundcloud/intervene/commit/bd751ba815ecdc0f5e0af135fbdd6861103b82d1))
+* **ci:** work around broken npm in Node 22.22.2 ([0cef37c](https://github.com/soundcloud/intervene/commit/0cef37c649b8a7e78addda4598e241c249fcc5c1)), closes [nodejs/node#62425](https://github.com/nodejs/node/issues/62425) [actions/runner-images#13883](https://github.com/actions/runner-images/issues/13883)
+
 # [5.0.0](https://github.com/soundcloud/intervene/compare/v4.0.0...v5.0.0) (2026-03-25)
 
 
