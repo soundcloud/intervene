@@ -23,6 +23,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm install -g npm@11
+      - name: Upgrade npm
+        run: |
+          npm_major=$(npm --version | cut -d. -f1)
+          if [ "$npm_major" -lt 11 ]; then
+            npm install -g npm@10 && npm install -g npm@11
+          fi
       - run: npm ci
       - run: make test
