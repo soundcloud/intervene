@@ -6,6 +6,8 @@ on:
 
 permissions:
   id-token: write
+  contents: write
+  packages: read
 
 jobs:
   release:
@@ -28,7 +30,14 @@ jobs:
         run: npm ci
       - name: Build
         run: make build
+      # Authenticate as sc-governed-write so the push bypasses the security gate.
+      # See https://eng-doc.soundcloud.org/security/security-gate/bypass-allowlist/
+      - name: Authenticate for governed default-branch push
+        id: sc-governed-write
+        uses: soundcloud/security-tooling/.github/actions/sc-governed-write-auth@08ef0c295fb3692643771a8100a1e6649c50ac9a
+        with:
+          sc-governed-write-app-private-key: ${{ secrets.SC_GOVERNED_WRITE_APP_PRIVATE_KEY }}
       - name: Release
         env:
-          GH_TOKEN: ${{ secrets.CI_TOKEN }}
+          GH_TOKEN: ${{ steps.sc-governed-write.outputs.token }}
         run: npm run semantic-release
