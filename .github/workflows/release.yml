@@ -36,7 +36,7 @@ jobs:
       # See https://eng-doc.soundcloud.org/security/security-gate/bypass-allowlist/
       - name: Authenticate for governed default-branch push
         id: sc-governed-write
-        uses: soundcloud/security-tooling/.github/actions/sc-governed-write-auth@2e4086b2fe93e68d074a8037d18f55a3f0ea78ce
+        uses: soundcloud/security-tooling/.github/actions/sc-governed-write-auth@main
         with:
           sc-governed-write-app-private-key: ${{ secrets.SC_GOVERNED_WRITE_APP_PRIVATE_KEY }}
       - name: Release
