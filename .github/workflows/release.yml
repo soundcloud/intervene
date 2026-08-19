@@ -30,7 +30,9 @@ jobs:
         run: npm ci
       - name: Build
         run: make build
-      # Authenticate as sc-governed-write so the push bypasses the security gate.
+      # Configure git credentials as sc-governed-write so @semantic-release/git's
+      # push to master bypasses the security gate. Keep CI_TOKEN as GH_TOKEN for
+      # @semantic-release/github (releases, issue comments, failure issues).
       # See https://eng-doc.soundcloud.org/security/security-gate/bypass-allowlist/
       - name: Authenticate for governed default-branch push
         id: sc-governed-write
@@ -39,5 +41,5 @@ jobs:
           sc-governed-write-app-private-key: ${{ secrets.SC_GOVERNED_WRITE_APP_PRIVATE_KEY }}
       - name: Release
         env:
-          GH_TOKEN: ${{ steps.sc-governed-write.outputs.token }}
+          GH_TOKEN: ${{ secrets.CI_TOKEN }}
         run: npm run semantic-release
