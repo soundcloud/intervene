@@ -3,20 +3,35 @@ on:
   workflow_run:
     workflows: ['Node.js CI']
     types: [completed]
+    branches: [master]
+
+# Serialize release runs so a CI re-trigger waits for tag push to finish.
+concurrency:
+  group: release
+  cancel-in-progress: false
 
 permissions:
   id-token: write
+  contents: write
+  packages: read
+  pull-requests: write
 
 jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    # Merging the release PR re-triggers Node.js CI; skip that run to avoid
+    # a release loop while the commit/tag are briefly out of sync.
+    if: >
+      github.event.workflow_run.conclusion == 'success' &&
+      (github.event.workflow_run.head_commit == null ||
+       !startsWith(github.event.workflow_run.head_commit.message, 'chore(release):'))
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           persist-credentials: false
+          fetch-depth: 0
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -28,7 +43,50 @@ jobs:
         run: npm ci
       - name: Build
         run: make build
-      - name: Release
+      - name: Prepare release (analyze, changelog, npm publish)
         env:
+          SEMANTIC_RELEASE_PHASE: prep
           GH_TOKEN: ${{ secrets.CI_TOKEN }}
         run: npm run semantic-release
+      - name: Read release version
+        id: version
+        run: echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
+      - name: Open release PR
+        id: cpr
+        uses: sc-actions-forks/create-pull-request@6699836a213cf8b28c4f0408a404a6ac79d4458a
+        with:
+          branch: automation/release-${{ steps.version.outputs.version }}
+          base: master
+          title: 'chore(release): ${{ steps.version.outputs.version }}'
+          commit-message: 'chore(release): ${{ steps.version.outputs.version }}'
+          delete-branch: true
+      - name: Enable auto-merge for release PR
+        if: steps.cpr.outputs.pull-request-number != ''
+        run: |
+          PR="${{ steps.cpr.outputs.pull-request-number }}"
+          gh pr merge --auto --squash "$PR" || gh pr merge --squash "$PR"
+        env:
+          GH_TOKEN: ${{ secrets.SC_GITHUB_BOT_PAT }}
+      - name: Wait for release PR to merge
+        if: steps.cpr.outputs.pull-request-number != ''
+        run: |
+          PR="${{ steps.cpr.outputs.pull-request-number }}"
+          while [ "$(gh pr view "$PR" --json state --jq '.state')" = "OPEN" ]; do
+            sleep 10
+          done
+          if [ "$(gh pr view "$PR" --json state --jq '.state')" != "MERGED" ]; then
+            echo "Release PR was not merged (state: $(gh pr view "$PR" --json state --jq '.state'))"
+            exit 1
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.SC_GITHUB_BOT_PAT }}
+      - name: Tag release and push
+        if: steps.cpr.outputs.pull-request-number != ''
+        run: ./scripts/release-tag.sh
+        env:
+          GH_TOKEN: ${{ secrets.SC_GITHUB_BOT_PAT }}
+      - name: Create GitHub release
+        if: steps.cpr.outputs.pull-request-number != ''
+        env:
+          GH_TOKEN: ${{ secrets.CI_TOKEN }}
+        run: ./scripts/release-github.sh
