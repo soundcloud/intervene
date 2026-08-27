@@ -10,8 +10,8 @@ if gh release view "$TAG" >/dev/null 2>&1; then
 fi
 
 NOTES=$(awk -v version="$VERSION" '
-  $0 ~ "^## \\[" version "\\]" { capture=1; next }
-  capture && /^# / { exit }
+  index($0, "## [" version "]") == 1 || index($0, "# [" version "]") == 1 { capture=1; next }
+  capture && /^##? / { exit }
   capture { print }
 ' CHANGELOG.md)
 
