@@ -6,8 +6,6 @@ on:
 
 permissions:
   id-token: write
-  contents: write
-  packages: read
 
 jobs:
   release:
@@ -19,7 +17,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           persist-credentials: false
-          fetch-depth: 0
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -31,24 +28,7 @@ jobs:
         run: npm ci
       - name: Build
         run: make build
-      - name: Prepare release (analyze, changelog, npm publish)
+      - name: Release
         env:
-          SEMANTIC_RELEASE_PHASE: prep
           GH_TOKEN: ${{ secrets.CI_TOKEN }}
         run: npm run semantic-release
-      # Mint sc-governed-write only for the default-branch push; prep and GitHub release
-      # keep CI_TOKEN (npm OIDC provenance and @semantic-release/github parity).
-      # https://eng-doc.soundcloud.org/security/security-gate/bypass-allowlist/
-      - name: Authenticate for governed default-branch push
-        id: sc-governed-write
-        uses: soundcloud/security-tooling/.github/actions/sc-governed-write-auth@main
-        with:
-          sc-governed-write-app-private-key: ${{ secrets.SC_GOVERNED_WRITE_APP_PRIVATE_KEY }}
-      - name: Push release commit and tags to default branch
-        id: release-push
-        run: ./scripts/release-push.sh
-      - name: Create GitHub release
-        if: steps.release-push.outputs.released == 'true'
-        env:
-          GH_TOKEN: ${{ secrets.CI_TOKEN }}
-        run: ./scripts/release-github.sh
