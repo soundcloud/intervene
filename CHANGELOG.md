@@ -1,3 +1,13 @@
+## [5.0.2](https://github.com/soundcloud/intervene/compare/v5.0.1...v5.0.2) (2026-08-27)
+
+
+### Bug Fixes
+
+* **ci:** keep CI_TOKEN for semantic-release GitHub API calls ([1cab8a7](https://github.com/soundcloud/intervene/commit/1cab8a7827eec5f56906a95085bdb337cdb1091e))
+* **ci:** pin sc-governed-write-auth to current main SHA ([e23480d](https://github.com/soundcloud/intervene/commit/e23480dde631dae08b863686330299ee21269d51))
+* **ci:** scope sc-governed-write to default-branch push steps ([3058d71](https://github.com/soundcloud/intervene/commit/3058d71f16602ff258a36fa2cb92878a84b2efa0))
+* **ci:** wire sc-governed-write-auth for security gate bypass ([2915d08](https://github.com/soundcloud/intervene/commit/2915d0888c457de027b3cbe742047e328cdc6a6c))
+
 ## [5.0.1](https://github.com/soundcloud/intervene/compare/v5.0.0...v5.0.1) (2026-04-06)
 
 
