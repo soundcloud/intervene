@@ -55,7 +55,7 @@ jobs:
         id: cpr
         uses: sc-actions-forks/create-pull-request@6699836a213cf8b28c4f0408a404a6ac79d4458a
         with:
-          token: ${{ secrets.SC_GITHUB_BOT_PAT }}
+          token: ${{ secrets.SC_BOT_GITHUB_TOKEN }}
           branch: automation/release-${{ steps.version.outputs.version }}
           base: master
           title: 'chore(release): ${{ steps.version.outputs.version }}'
@@ -68,7 +68,7 @@ jobs:
           gh pr review --approve "$PR" || true
           gh pr merge --auto --squash "$PR" || gh pr merge --squash "$PR"
         env:
-          GH_TOKEN: ${{ secrets.SC_GITHUB_BOT_PAT }}
+          GH_TOKEN: ${{ secrets.SC_BOT_GITHUB_TOKEN }}
       - name: Wait for release PR to merge
         if: steps.cpr.outputs.pull-request-number != ''
         run: |
@@ -81,12 +81,12 @@ jobs:
             exit 1
           fi
         env:
-          GH_TOKEN: ${{ secrets.SC_GITHUB_BOT_PAT }}
+          GH_TOKEN: ${{ secrets.SC_BOT_GITHUB_TOKEN }}
       - name: Tag release and push
         if: steps.cpr.outputs.pull-request-number != ''
         run: ./scripts/release-tag.sh
         env:
-          GH_TOKEN: ${{ secrets.SC_GITHUB_BOT_PAT }}
+          GH_TOKEN: ${{ secrets.SC_BOT_GITHUB_TOKEN }}
       - name: Create GitHub release
         if: steps.cpr.outputs.pull-request-number != ''
         env:
