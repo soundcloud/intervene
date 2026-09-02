@@ -61,7 +61,7 @@
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/npm": "^13.1.5",
     "@types/jest": "^29.5.10",
-    "http-server": "^0.12.3",
+    "http-server": "^0.13.0",
     "jest": "^29.7.0",
     "lodash": "^4.17.21",
     "magicpen-media": "^1.5.1",
