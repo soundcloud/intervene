@@ -55,15 +55,17 @@ jobs:
         id: cpr
         uses: sc-actions-forks/create-pull-request@6699836a213cf8b28c4f0408a404a6ac79d4458a
         with:
+          token: ${{ secrets.SC_GITHUB_BOT_PAT }}
           branch: automation/release-${{ steps.version.outputs.version }}
           base: master
           title: 'chore(release): ${{ steps.version.outputs.version }}'
-          commit-message: 'chore(release): ${{ steps.version.outputs.version }}'
+          commit-message: 'chore(release): ${{ steps.version.outputs.version }} [skip ci]'
           delete-branch: true
-      - name: Enable auto-merge for release PR
+      - name: Approve and enable auto-merge for release PR
         if: steps.cpr.outputs.pull-request-number != ''
         run: |
           PR="${{ steps.cpr.outputs.pull-request-number }}"
+          gh pr review --approve "$PR" || true
           gh pr merge --auto --squash "$PR" || gh pr merge --squash "$PR"
         env:
           GH_TOKEN: ${{ secrets.SC_GITHUB_BOT_PAT }}
