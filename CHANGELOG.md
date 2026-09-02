@@ -1,3 +1,10 @@
+## [5.0.5](https://github.com/soundcloud/intervene/compare/v5.0.4...v5.0.5) (2026-09-02)
+
+
+### Bug Fixes
+
+* **ci:** use SC_BOT_GITHUB_TOKEN for release automerge ([94bcad8](https://github.com/soundcloud/intervene/commit/94bcad88fb309a9dc0d426765cd11e675c245b2f)), closes [#111](https://github.com/soundcloud/intervene/issues/111)
+
 ## [5.0.2](https://github.com/soundcloud/intervene/compare/v5.0.1...v5.0.2) (2026-08-27)
 
 
