@@ -1,3 +1,10 @@
+## [5.0.3](https://github.com/soundcloud/intervene/compare/v5.0.2...v5.0.3) (2026-09-02)
+
+
+### Bug Fixes
+
+* **ci:** route release commits through auto-PR automerge ([cc6072e](https://github.com/soundcloud/intervene/commit/cc6072ed8588bf9474e743acdf2d99cfd32e5111))
+
 ## [5.0.2](https://github.com/soundcloud/intervene/compare/v5.0.1...v5.0.2) (2026-08-27)
 
 
