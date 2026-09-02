@@ -8,6 +8,8 @@ on:
 
 jobs:
   build:
+    # Release version-bump PRs are opened after tests pass in the Release workflow.
+    if: ${{ github.event_name != 'pull_request' || !startsWith(github.head_ref, 'automation/release-') }}
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
