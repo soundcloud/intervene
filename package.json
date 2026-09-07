@@ -101,5 +101,8 @@
       "<rootDir>/src/**/__tests__/*.spec.ts",
       "<rootDir>/integration-tests/**/*.spec.ts"
     ]
+  },
+  "overrides": {
+    "@hapi/content": "6.0.2"
   }
 }
