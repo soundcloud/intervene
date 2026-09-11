@@ -33,7 +33,7 @@
   ],
   "dependencies": {
     "@hapi/hapi": "^21.3.2",
-    "@types/bluebird": "3.5.34",
+    "@types/bluebird": "3.5.42",
     "@types/node": "^18.0.0",
     "@types/node-forge": "^0.8.2",
     "@types/prettier": "^1.16.3",
