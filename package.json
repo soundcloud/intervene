@@ -35,7 +35,7 @@
     "@hapi/hapi": "^21.3.2",
     "@types/bluebird": "3.5.34",
     "@types/node": "^18.0.0",
-    "@types/node-forge": "^0.8.2",
+    "@types/node-forge": "^0.10.0",
     "@types/prettier": "^1.16.3",
     "@types/yargs": "^12.0.0",
     "axios": "^0.21.2",
