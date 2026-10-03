@@ -397,6 +397,13 @@ function spawnProcess(
     process.stdout.on('end', () => {
       stdout = Buffer.concat(output);
     });
+    process.stderr.on('data', (data) => {
+      if (typeof data === 'string') {
+        errors.push(Buffer.from(data));
+      } else {
+        errors.push(data);
+      }
+    });
     process.stderr.on('end', () => {
       stderr = Buffer.concat(errors);
     });
